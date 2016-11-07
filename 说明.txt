@@ -1,7 +1,10 @@
 1.数据库Mysql
 WebContent/db/footprint.sql
+
 2.jdk1.6
+
 3.框架jQuery_easyUI+SpringMVC+Hibernate
+
 4.目录说明
 com/aj/general :通用类
 com/aj/general/dao :通用dao
@@ -9,6 +12,7 @@ com/aj/footprint/model/po :hibernate持久化类，与数据库对应
 com/aj/footprint/model/vo :java实体类
 com/aj/footprint/service ：服务类 接口+实现（/impl）
 com/aj/footprint/controller ：控制器
+
 5.当前状态
 已基本实现用户登录后根据角色出现不同菜单
 
