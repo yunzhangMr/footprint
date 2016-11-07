@@ -1,15 +1,16 @@
-1.Êı¾İ¿âMysql
+1.æ•°æ®åº“Mysql
+WebContent/db/footprint.sql
 2.jdk1.6
-3.¿ò¼ÜjQuery_easyUI+SpringMVC+Hibernate
-4.Ä¿Â¼ËµÃ÷
-com/aj/general :Í¨ÓÃÀà
-com/aj/general/dao :Í¨ÓÃdao
-com/aj/footprint/model/po :hibernate³Ö¾Ã»¯Àà£¬ÓëÊı¾İ¿â¶ÔÓ¦
-com/aj/footprint/model/vo :javaÊµÌåÀà
-com/aj/footprint/service £º·şÎñÀà ½Ó¿Ú+ÊµÏÖ£¨/impl£©
-com/aj/footprint/controller £º¿ØÖÆÆ÷
-5.µ±Ç°×´Ì¬
-ÒÑ»ù±¾ÊµÏÖÓÃ»§µÇÂ¼ºó¸ù¾İ½ÇÉ«³öÏÖ²»Í¬²Ëµ¥
+3.æ¡†æ¶jQuery_easyUI+SpringMVC+Hibernate
+4.ç›®å½•è¯´æ˜
+com/aj/general :é€šç”¨ç±»
+com/aj/general/dao :é€šç”¨dao
+com/aj/footprint/model/po :hibernateæŒä¹…åŒ–ç±»ï¼Œä¸æ•°æ®åº“å¯¹åº”
+com/aj/footprint/model/vo :javaå®ä½“ç±»
+com/aj/footprint/service ï¼šæœåŠ¡ç±» æ¥å£+å®ç°ï¼ˆ/implï¼‰
+com/aj/footprint/controller ï¼šæ§åˆ¶å™¨
+5.å½“å‰çŠ¶æ€
+å·²åŸºæœ¬å®ç°ç”¨æˆ·ç™»å½•åæ ¹æ®è§’è‰²å‡ºç°ä¸åŒèœå•
 
 2016-11-07 
-ÂÀÖÇÎÄ
+å•æ™ºæ–‡
