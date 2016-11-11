@@ -26,94 +26,81 @@ public class Baby implements Serializable{
 	/**
 	 * 宝宝ID
 	 */
-	@Id
-	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer babyid;
 	
 	/**
 	 * 姓名
 	 */
-	@Column(name = "BNAME" , length = 50)
 	private String babyname;
 	
 	/**
 	 * 性别
 	 */
-	@Column(name = "GENDER", length = 4)
 	private String gender;
 	
 	/**
 	 * 生日
 	 */
-	@Column(name = "BIRTH", columnDefinition = "DATE")
 	private Date birth;
 	
 	/**
 	 * 电话
 	 */
-	@Column(name = "TELEPHONE", length = 20)
 	private String phone;
 	
 	/**
 	 * 家长ID
 	 */
-	@Column(name = "PARENT_ID", length = 50)
 	private String parentId;
 	
 	/**
 	 * 家长姓名
 	 */
-	@Column(name = "PARENT_NAME", length = 50)
 	private String parentName;
 	
 	/**
 	 * 幼儿园ID
 	 */
-	@Column(name = "NURSERY_ID")
 	private Integer nurseryid;
 	
 	/**
 	 * 宝宝-班级ID
 	 */
-	@Column(name = "B_C_ID")
 	private Integer b_c_id;
 	
 	/**
 	 * 录入人
 	 */
-	@Column(name = "CREATEUSER" , length = 50)
 	private String createUser;
 	
 	/**
 	 * 创建日期
 	 */
-	@Column(name = "CREATEDATE" , columnDefinition = "DATE")
 	private Date createdate;
 	
 	/**
 	 * 属相
 	 */
-	@Column(name = "ANIMALSIGN" , length = 4)
 	private String animalsign;
 	
 	/**
 	 * 乳名
 	 */
-	@Column(name = "NICKNAME" , length = 50)
 	private String nickname;
 	
 	/**
 	 * 入园前抚育方式
 	 */
-	@Column(name = "NURTURE" , length = 250)
 	private String nurture;
 	
 	/**
 	 * 状态
 	 */
-	@Column(name = "STATUS" , length = 10)
 	private String status = "N";
+	private int page;// current page
+	private int rows;// number of records in each page
+	private String sort;// sort field
+	private String order;// sort order (asc,desc)
 
 	
 
@@ -236,7 +223,38 @@ public class Baby implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
 	
 
 }
