@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>登陆页面</title>
 <meta name="author" content="DeathGhost" />
-<script type="text/javascript" src="js/jQuery-VerificationCode/js/jquery.js" ></script>
-<script src="js/jQuery-VerificationCode/js/verificationNumbers.js" tppabs="js/verificationNumbers.js"></script>
-<script src="js/jQuery-VerificationCode/js/Particleground.js" tppabs="js/Particleground.js"></script>
-<link rel="stylesheet" type="text/css" href="js/jQuery-VerificationCode/css/style.css" tppabs="css/style.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery-VerificationCode/js/jquery.js" ></script>
+<script src="${pageContext.request.contextPath}/js/jQuery-VerificationCode/js/verificationNumbers.js" tppabs="js/verificationNumbers.js"></script>
+<script src="${pageContext.request.contextPath}/js/jQuery-VerificationCode/js/Particleground.js" tppabs="js/Particleground.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/jQuery-VerificationCode/css/style.css" tppabs="css/style.css" />
 <style>
 body{height:100%;background:#16a085;overflow:hidden;}
 canvas{z-index:-1;position:absolute;}
@@ -36,7 +36,8 @@ $(document).ready(function() {
 			if (obj.success) {
 				window.location.href="${pageContext.request.contextPath}/view/index.jsp";
 			}
-			else{				
+			else{	
+				$("#reminder").html("输入的账号或密码错误");
 				$("#loginid").val("");
 				$("#password").val("");
 			}			
@@ -62,10 +63,10 @@ $(document).ready(function() {
   <em>Appraise System</em>
  </dt>
  <dd class="user_icon">
-  <input type="text" name="loginid" placeholder="账号" class="login_txtbx"/>
+  <input type="text" name="loginid" id="loginid" placeholder="账号" class="login_txtbx"/>
  </dd>
  <dd class="pwd_icon">
-  <input type="password" name="password" placeholder="密码" class="login_txtbx"/>
+  <input type="password" id="password" name="password" placeholder="密码" class="login_txtbx"/>
  </dd>
 <dd class="val_icon">
   <div class="checkcode">
@@ -77,7 +78,7 @@ $(document).ready(function() {
  <dd>
   <input type="button" value="立即登陆" class="submit_btn"/>
  </dd>
-<span id="reminder" style="color:red;">账号或密码有误</span>
+<span id="reminder" style="color:red;"></span>
   <p>© 2015-2016 jq22 版权所有</p>
   <p>小脚印</p>
  </dd>

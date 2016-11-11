@@ -23,16 +23,8 @@ import com.aj.footprint.service.UserServiceI;
 @Service("userService")
 public class UserServiceImpl implements UserServiceI {
 
-	private BaseDaoI<TUser> userDao;
-	
-	public BaseDaoI<TUser> geTUserDao() {
-		return userDao;
-	}
-
 	@Autowired
-	public void seTUserDao(BaseDaoI<TUser> userDao) {
-		this.userDao = userDao;
-	}
+	private BaseDaoI<TUser> userDao;
 	
 	public User login(User user) {
 		TUser t = userDao.get("from TUser t where t.loginid = ? and t.password = ?", new Object[] { user.getLoginid(), Encrypt.e(user.getPassword()) });
