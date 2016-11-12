@@ -70,7 +70,7 @@ public class User implements Serializable{
 	/**
 	 * 角色ID
 	 */
-	private Integer roleid;
+	private String roleids;
 	
 	/**
 	 * 状态
@@ -189,12 +189,12 @@ public class User implements Serializable{
 		this.isAdmin = isAdmin;
 	}
 
-	public Integer getRoleid() {
-		return roleid;
+	public String getRoleids() {
+		return roleids;
 	}
 
-	public void setRoleid(Integer roleid) {
-		this.roleid = roleid;
+	public void setRoleids(String roleids) {
+		this.roleids = roleids;
 	}
 
 	public int getPage() {

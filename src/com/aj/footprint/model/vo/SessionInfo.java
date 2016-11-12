@@ -10,7 +10,7 @@ public class SessionInfo implements java.io.Serializable {
 	private String userName;// loginName
 	private String password;// loginName
 	private String ip;// IP address
-	private String roleId;
+	private String roleIds;
 
 	
 
@@ -62,14 +62,14 @@ public class SessionInfo implements java.io.Serializable {
 
 
 
-	public String getRoleId() {
-		return roleId;
+	public String getRoleIds() {
+		return roleIds;
 	}
 
 
 
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
+	public void setRoleIds(String roleIds) {
+		this.roleIds = roleIds;
 	}
 
 

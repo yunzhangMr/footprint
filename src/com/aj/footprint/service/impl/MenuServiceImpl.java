@@ -17,22 +17,26 @@ import com.aj.general.dao.BaseDaoI;
 import com.aj.footprint.model.po.TMenu;
 import com.aj.footprint.model.vo.Menu;
 import com.aj.footprint.model.vo.TreeNode;
+import com.aj.footprint.model.vo.User;
 import com.aj.footprint.service.MenuServiceI;
 
 @Service("menuService")
 public class MenuServiceImpl implements MenuServiceI {
 
+	@Autowired
 	private BaseDaoI<TMenu> menuDao;
 
-	public BaseDaoI<TMenu> geTMenuDao() {
-		return menuDao;
-	}
+	@Override
+    public List<TMenu> getMenu(User user){
+    	
+		String hql = " from TMenu m where m.roleid=? order by m.seq asc";
+	//	String hql = " from TMenu m where m.roleid in (?) order by m.seq asc";
+		List<TMenu> list = menuDao.find(hql, new Object[]{user.getRoleids()});
+    	return list;
+    }
 
-	@Autowired
-	public void seTMenuDao(BaseDaoI<TMenu> menuDao) {
-		this.menuDao = menuDao;
-	}
 
+/*
 	public List<TreeNode> tree(Menu menu,String roleid, Boolean b) {
 		List<Object> param = new ArrayList<Object>();
 		String hql = "from TMenu t where t.TMenu = '0' and t.roleids='"+roleid+"' order by t.seq";
@@ -112,11 +116,13 @@ public class MenuServiceImpl implements MenuServiceI {
 		return l;
 	}
 
-	/**
+	*//**
 	 * count child nodes
-	 */
+	 *//*
 	private Long countChildren(String pid) {
 		return menuDao.count("select count(*) from TMenu t where t.TMenu.mid = ?", new Object[] { pid });
 	}
+
+*/
 
 }

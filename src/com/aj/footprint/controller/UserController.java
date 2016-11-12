@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,7 @@ public class UserController extends BaseController {
 			sessionInfo.setLoginId(u.getLoginid());
 			sessionInfo.setUserName(user.getUsername());
 			sessionInfo.setPassword(user.getPassword());
-			sessionInfo.setRoleId(user.getRoleid().toString());
+			sessionInfo.setRoleIds(user.getRoleids());
 			HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
 			sessionInfo.setIp(IpUtil.getIpAddr(request));
 			request.getSession().setAttribute(ResourceUtil.getSessionInfoName(), sessionInfo);

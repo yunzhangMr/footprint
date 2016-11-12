@@ -82,8 +82,8 @@ public class TUser implements Serializable{
 	/**
 	 * 角色ID
 	 */
-	@Column(name = "ROLEID")
-	private Integer roleid;
+	@Column(name = "ROLEIDS")
+	private String roleids;
 	
 	/**
 	 * 状态
@@ -199,12 +199,12 @@ public class TUser implements Serializable{
 		this.isAdmin = isAdmin;
 	}
 
-	public Integer getRoleid() {
-		return roleid;
+	public String getRoleid() {
+		return roleids;
 	}
 
-	public void setRoleid(Integer roleid) {
-		this.roleid = roleid;
+	public void setRoleids(String roleids) {
+		this.roleids = roleids;
 	}
 	
 	

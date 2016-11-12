@@ -20,8 +20,9 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import rml.model.vo.SessionInfo;
 import rml.service.OnlineServiceI;
+
+import com.aj.footprint.model.vo.SessionInfo;
 import com.aj.general.util.ResourceUtil;
 
 /**
