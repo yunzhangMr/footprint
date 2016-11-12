@@ -56,37 +56,15 @@ public class TMenu implements Serializable{
 	/**
 	 * 角色
 	 */
-	private String roleids;
-	
-	
-	private TMenu tmenu;
+	private String roleid;
 	
 	/**
-	 * 下级列表
+	 * url
+	 * @return
 	 */
-	private Set<TMenu> tmenus = new HashSet<TMenu>(0);
+	private String url;
+
 	
-	/** default constructor */
-	public TMenu() {
-	}
-
-	/** minimal constructor */
-	public TMenu(String mid, String fname) {
-		this.mid = mid;
-		this.fname = fname;
-	}
-
-	/** full constructor */
-	public TMenu(String mid, TMenu tmenu, String icon, String fname, Integer seq, String furl, Set<TMenu> tmenus,String roleids) {
-		this.mid = mid;
-		this.tmenu = tmenu;
-		this.icon = icon;
-		this.fname = fname;
-		this.seq = seq;
-		this.furl = furl;
-		this.tmenus = tmenus;
-		this.roleids=roleids;
-	}
 
 	@Id
 	@Column(name = "ID" , length = 10)
@@ -135,34 +113,22 @@ public class TMenu implements Serializable{
 		this.furl = furl;
 	}
 
-	@Column(name = "ROLEIDS" , length = 20)
-	public String getRoleids() {
-		return roleids;
+	@Column(name = "ROLEID" , length = 20)
+	public String getRoleid() {
+		return roleid;
 	}
 
-	public void setRoleids(String roleids) {
-		this.roleids = roleids;
+	public void setRoleid(String roleid) {
+		this.roleid = roleid;
+	}
+	@Column(name = "URL" , length = 50)
+	public String getUrl() {
+		return url;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "BELONGTO")
-	public TMenu getTMenu() {
-		return tmenu;
+	public void setUrl(String url) {
+		this.url = url;
 	}
-
-	public void setTMenu(TMenu tmenu) {
-		this.tmenu = tmenu;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "TMenu")
-	public Set<TMenu> getTmenus() {
-		return tmenus;
-	}
-
-	public void setTmenus(Set<TMenu> tmenus) {
-		this.tmenus = tmenus;
-	}
-	
 	
 
 }

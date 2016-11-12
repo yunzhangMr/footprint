@@ -16,6 +16,10 @@ canvas{z-index:-1;position:absolute;}
 </style>
 
 <script>
+
+<% 
+ 
+%>
 $(document).ready(function() {
   //粒子背景特效
   $('body').particleground({

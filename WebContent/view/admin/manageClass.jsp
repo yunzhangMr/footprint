@@ -23,7 +23,7 @@
         url: "${pageContext.request.contextPath}/adminController/classManage", 
         dataType: "json",
         pagination: true, //分页
-        singleSelect: false,
+        singleSelect: true,
         search: true, //显示搜索框
         sidePagination: "server", //服务端处理分页
               columns: [
