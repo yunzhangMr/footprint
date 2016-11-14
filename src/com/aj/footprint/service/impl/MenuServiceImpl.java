@@ -1,24 +1,14 @@
 package com.aj.footprint.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aj.footprint.comparator.MenuComparator;
-import com.aj.general.dao.BaseDaoI;
 import com.aj.footprint.model.po.TMenu;
-import com.aj.footprint.model.vo.Menu;
-import com.aj.footprint.model.vo.TreeNode;
 import com.aj.footprint.model.vo.User;
 import com.aj.footprint.service.MenuServiceI;
+import com.aj.general.dao.BaseDaoI;
 
 @Service("menuService")
 public class MenuServiceImpl implements MenuServiceI {

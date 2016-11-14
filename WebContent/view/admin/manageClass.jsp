@@ -80,28 +80,27 @@ input{width:250px;}
    </div>
   <div class="modal-body">
 	<div class="container-fluid">
-		<form class="form-horizontal">
-		    <div class="form-group">
-				
-				<label for="paixu" style="float:left;">排序:&nbsp;</label>
+		<form class="form-horizontal" action="/adminController/classAdd" method="post">
+		    <div class="form-group">				
+				<label for="paixu" class="col-xs-2 control-label">排序:</label>
 				<select class=" form-control" style="width:100px;">
-					<option>地区</option>
 					<option>地区</option>
 					<option>班期</option>
 					<option>性别</option>
 					<option>年龄</option>
 					<option>份数</option>
 				</select>
-				<div class="col-xs-8">
-				<label for="situation" class="col-xs-3 control-label">学期：</label>
-					<label class="control-label" for="anniu">
-						<input type="radio" name="situation" id="normal">上学期</label>
-					<label class="control-label" for="meun">
-						<input type="radio" name="situation" id="forbid">下学期</label>
-				</div>
 			</div>
+			<div class="form-group">
+			<label for="situation" class="col-xs-2 control-label">学期：</label>
+				<label class="control-label" for="anniu">
+					<input type="radio" name="situation" id="normal">上学期</label>
+				<label class="control-label" for="meun">
+					<input type="radio" name="situation" id="forbid">下学期</label>
+			</div>
+			
 			<div class="form-group ">
-				<label for="sName" class="col-xs-3 control-label">班级年级：</label>
+				<label for="sName" class="col-xs-2 control-label">班级年级：</label>
 				<div class="col-xs-8 ">
 					<input type="email" style="width:180px;float:left;" class="form-control input-sm" id="sName" placeholder="大">
 					<input type="email" style="width:180px;float:left;" class="form-control input-sm" id="sName" placeholder="中">
@@ -109,7 +108,7 @@ input{width:250px;}
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="sLink" class="col-xs-3 control-label">年级班数：</label>
+				<label for="sLink" class="col-xs-2 control-label">年级班数：</label>
 				<div class="col-xs-8 ">
 					<input type="" style="width:180px;float:left;" class="form-control input-sm" id="sLink" placeholder="大">
 					<input type="" style="width:180px;float:left;" class="form-control input-sm" id="sLink" placeholder="中">
@@ -117,20 +116,20 @@ input{width:250px;}
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="sOrd" class="col-xs-3 control-label">班级名称格式：</label>
+				<label for="sOrd" class="col-xs-2 control-label">班级名称格式：</label>
 				<div class="col-xs-8">
 					<input type="" style="width:180px;float:left;" class="form-control input-sm" id="sOrd" placeholder="大">
 					<input type="" style="width:180px;float:left;" class="form-control input-sm" id="sOrd" placeholder="中">
 					<input type="" style="width:180px;" class="form-control input-sm" id="sOrd" placeholder="小">
 				</div>
 			</div>
-		
+		  <div style="padding-left:400px;">
+		  <button type="submit" style="width:120px;height:40px;" class="btn btn-xs btn-green">创建</button>
+		  </div>
 		</form>
 	</div>
 </div>
-<div class="modal-footer">
-		<button type="button" style="width:120px;height:40px;" class="btn btn-xs btn-green">创建</button>
-</div>
+
    
 </body>
 </html>

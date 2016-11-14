@@ -40,7 +40,7 @@ String roleids = "1";
 		 success : function(data) {
 			var obj = jQuery.parseJSON(data);
 			for(var i in obj){ 
-				var div = "<div  class='meun-item' href='"+obj[i].url+"' onclick=\"addclick()\">"+obj[i].fname+"</div>";
+				var div = "<div id='"+obj[i].url+"' class='meun-item' href='"+obj[i].url+"' onclick=\"addclick('"+obj[i].url+"')\">"+obj[i].fname+"</div>";
 			    $("#title").append(div);						  
 			}
     
@@ -52,17 +52,12 @@ String roleids = "1";
 	});
     });
    
-    function addclick() {	
+    function addclick(href) {	
        //给菜单添加点击事件       
-        $(".meun-item").click(function() {
-        	
 	        $("#content").empty();
 			$(".meun-item").removeClass("meun-item-active");
-			$(this).addClass("meun-item-active");
-			var href = $(this).attr("href");
-	        
+			$('#'+href).addClass("meun-item-active");
 			$("#content").load("../view/admin/"+href+".jsp");
-		});
 	}
        
 </script>
@@ -101,8 +96,11 @@ img {height:200px;width:100%;}
 		      <div class="tab-content" id="content">         
 		          </div>
 		    </div>
-		  
-		     </div>
+		  <div class="modal-footer" id="foot">
+		  <script type="text/javascript">
+               $("#foot").load("../view/layout/foot.jsp");
+              </script>
+           </div>
 		     
 		    
 </div>
