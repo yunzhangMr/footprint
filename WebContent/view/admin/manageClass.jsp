@@ -6,12 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>宝宝班级调整</title>
 
-<%-- <script src="${pageContext.request.contextPath}/resource/jquery-1.9.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/jquery-1.9.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/js/bootstrap-table.js"></script>
 <script src="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/js/bootstrap-table-zh-CN.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/css/bootstrap.css" rel="stylesheet"/>
-<link type="text/css" href="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/css/bootstrap-table.min.css" rel="stylesheet"/>    --%> 
+<link type="text/css" href="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/css/bootstrap-table.min.css" rel="stylesheet"/>   
 
 
 <script type="text/javascript">
