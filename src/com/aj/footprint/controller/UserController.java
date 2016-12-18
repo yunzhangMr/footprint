@@ -1,6 +1,9 @@
 package com.aj.footprint.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,15 +14,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.aj.footprint.model.po.TClass;
 import com.aj.footprint.model.vo.DataGrid;
 import com.aj.footprint.model.vo.Json;
+import com.aj.footprint.model.vo.Pagination;
 import com.aj.footprint.model.vo.SessionInfo;
 import com.aj.footprint.model.vo.User;
+import com.aj.footprint.service.SequenceAutoI;
 import com.aj.footprint.service.UserServiceI;
+import com.aj.general.util.DecodeUtil;
 import com.aj.general.util.ExceptionUtil;
 import com.aj.general.util.IpUtil;
 import com.aj.general.util.ResourceUtil;
@@ -32,6 +40,9 @@ public class UserController extends BaseController {
 	
 	@Autowired
 	private UserServiceI userService;
+	
+	@Autowired
+	private SequenceAutoI sequenceAutoService;
 	
 	@RequestMapping("/user")
 	public String user() {
@@ -53,22 +64,27 @@ public class UserController extends BaseController {
 		return "/admin/userRoleEdit";
 	}
 	
+	//登录，并将基本信息保存到session中
 	@RequestMapping("/doNotNeedSession_login")
 	@ResponseBody
 	public Json doNotNeedSession_login(User user) {		
 		
 		Json j = new Json();	
 		User u = userService.login(user);
+//		System.out.println(u);
 		if (u != null) {
 			SessionInfo sessionInfo = new SessionInfo();
 			sessionInfo.setLoginId(u.getLoginid());
 			sessionInfo.setUserName(user.getUsername());
 			sessionInfo.setPassword(user.getPassword());
-			sessionInfo.setRoleIds(user.getRoleids());
+			sessionInfo.setRoleIds(u.getRoleids());
+			sessionInfo.setNurseryid(u.getNurseryid());
+			sessionInfo.setNurseryname(u.getNurseryname());
 			HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
 			sessionInfo.setIp(IpUtil.getIpAddr(request));
-			request.getSession().setAttribute(ResourceUtil.getSessionInfoName(), sessionInfo);
-
+			request.getSession().setAttribute("sessionInfo", sessionInfo);
+			//打印sessionInfo的信息
+			System.out.println(sessionInfo);
 			j.setObj(sessionInfo);
 			j.setSuccess(true);
 			j.setMsg("Login successfully");
@@ -202,4 +218,95 @@ public class UserController extends BaseController {
 		return userService.datagrid(user);
 	}
 	
+	//获取教师列表（分页的）
+	@ResponseBody
+	@RequestMapping(value="/teacherManage")
+	public Map<String,Object>  teacherManage(int limit,int offset,String name,String phone,String status){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("name", DecodeUtil.decodeParameter(name.trim()));
+		params.put("phone", DecodeUtil.decodeParameter(phone.trim()));
+		params.put("status", DecodeUtil.decodeParameter(status.trim()));
+		Pagination page = userService.queryPage(limit, offset, params);
+		List list = page.getResultList();
+		Integer total = page.getTotalRows();
+	    //此处查出对象list集合 放入到 map中,key值为 rows,total 为总页数
+		Map<String,Object> map= new HashMap<String, Object>();
+		map.put("total", total);
+		map.put("rows", list);
+		return map;
+
+	}
+	
+	//获取教师列表（新增班级的时候调用）
+	@ResponseBody
+	@RequestMapping(value="/getTeachers",method=RequestMethod.POST)
+	public List<Map<String, Object>> getTeachers(String name,String mobile){
+		return userService.queryTeachers(name,mobile);
+	}
+	
+	//编辑角色
+	@RequestMapping("/editRole")
+	@ResponseBody
+	public Json editRole(User user) {
+		Json j = new Json();
+		try {
+			System.out.println(user);
+			userService.updatePart(user);
+			j.setSuccess(true);
+			j.setMsg("Edit successfully");
+		} catch (Exception e) {
+			logger.error(ExceptionUtil.getExceptionMessage(e));
+			j.setMsg("Edit unsuccessfully");
+		}
+		return j;
+	}
+	
+	//新增用户
+	@RequestMapping("/addTeacher")
+	@ResponseBody
+	public Json addTeacher(User user) {
+		/*System.out.println("0");*/
+		Json j = new Json();
+		//can not add admin
+		try {	
+			/*user.setLoginid("1111111");*/
+			int rom = (int)(1+Math.random()*1000);
+			user.setLoginid(Integer.toString(rom));
+//			user.getUsername()+
+			/*System.out.println(sequenceAutoService.getAutoSequence().toString());*/
+			user.setStatus("Y");
+			/*user.setRoleids("2");*/
+			user.setPassword("123456");
+			user.setClassId(0);
+//				user.setCreatedate(new Date());
+			HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
+			SessionInfo sessionInfo = (SessionInfo)request.getSession().getAttribute("sessionInfo");
+			user.setNurseryid(sessionInfo.getNurseryid());
+			user.setNurseryname(sessionInfo.getNurseryname());
+			System.out.println(user);
+			userService.save(user);
+			j.setSuccess(true);
+			j.setMsg("Add successfully");
+		} catch (Exception e) {
+			logger.error(ExceptionUtil.getExceptionMessage(e));
+			j.setMsg("Add unsuccessfully");
+		}
+		return j;
+	}
+	
+	//编辑基础信息
+	@RequestMapping("/editBase")
+	@ResponseBody
+	public Json editBase(User user) {
+		Json j = new Json();
+		try {
+			userService.updateBase(user);
+			j.setSuccess(true);
+			j.setMsg("Edit successfully");
+		} catch (Exception e) {
+			logger.error(ExceptionUtil.getExceptionMessage(e));
+			j.setMsg("Edit unsuccessfully");
+		}
+		return j;
+	}
 }

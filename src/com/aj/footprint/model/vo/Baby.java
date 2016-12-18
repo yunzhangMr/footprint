@@ -13,12 +13,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * 宝宝
+ * 宝宝基本信息
  * @author
  *
  */
-@Entity
-@Table(name="F_BABY")
 public class Baby implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -26,12 +24,12 @@ public class Baby implements Serializable{
 	/**
 	 * 宝宝ID
 	 */
-	private Integer babyid;
+	private Integer id;
 	
 	/**
 	 * 姓名
 	 */
-	private String babyname;
+	private String bname;
 	
 	/**
 	 * 性别
@@ -51,12 +49,12 @@ public class Baby implements Serializable{
 	/**
 	 * 家长ID
 	 */
-	private String parentId;
+	private String parent_id;
 	
 	/**
 	 * 家长姓名
 	 */
-	private String parentName;
+	private String parent_name;
 	
 	/**
 	 * 幼儿园ID
@@ -64,14 +62,9 @@ public class Baby implements Serializable{
 	private Integer nurseryid;
 	
 	/**
-	 * 宝宝-班级ID
-	 */
-	private Integer b_c_id;
-	
-	/**
 	 * 录入人
 	 */
-	private String createUser;
+	private String createuser;
 	
 	/**
 	 * 创建日期
@@ -97,27 +90,37 @@ public class Baby implements Serializable{
 	 * 状态
 	 */
 	private String status = "N";
-	private int page;// current page
-	private int rows;// number of records in each page
-	private String sort;// sort field
-	private String order;// sort order (asc,desc)
+	
+//	private int page = 1;// current page
+//	private int rows = 5;// number of records in each page
+	
+	/**
+	 * 排序字段
+	 */
+	private String sort = "id"; // sort field
+	
+	/**
+	 * 
+	 * 排序方式（升序，降序）采用
+	 */
+	private String order = "desc"; // sort order (asc,desc)
 
 	
-
-	public Integer getBabyid() {
-		return babyid;
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public void setBabyid(Integer babyid) {
-		this.babyid = babyid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getBabyname() {
-		return babyname;
+	public String getBname() {
+		return bname;
 	}
 
-	public void setBabyname(String babyname) {
-		this.babyname = babyname;
+	public void setBname(String bname) {
+		this.bname = bname;
 	}
 
 	public String getGender() {
@@ -144,20 +147,20 @@ public class Baby implements Serializable{
 		this.phone = phone;
 	}
 
-	public String getParentId() {
-		return parentId;
+	public String getParent_id() {
+		return parent_id;
 	}
 
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
+	public void setParent_id(String parent_id) {
+		this.parent_id = parent_id;
 	}
 
-	public String getParentName() {
-		return parentName;
+	public String getParent_name() {
+		return parent_name;
 	}
 
-	public void setParentName(String parentName) {
-		this.parentName = parentName;
+	public void setParent_name(String parent_name) {
+		this.parent_name = parent_name;
 	}
 
 	public Integer getNurseryid() {
@@ -168,20 +171,12 @@ public class Baby implements Serializable{
 		this.nurseryid = nurseryid;
 	}
 
-	public Integer getB_c_id() {
-		return b_c_id;
+	public String getCreateuser() {
+		return createuser;
 	}
 
-	public void setB_c_id(Integer b_c_id) {
-		this.b_c_id = b_c_id;
-	}
-
-	public String getCreateUser() {
-		return createUser;
-	}
-
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
+	public void setCreateuser(String createuser) {
+		this.createuser = createuser;
 	}
 
 	public Date getCreatedate() {
@@ -224,22 +219,6 @@ public class Baby implements Serializable{
 		this.status = status;
 	}
 
-	public int getPage() {
-		return page;
-	}
-
-	public void setPage(int page) {
-		this.page = page;
-	}
-
-	public int getRows() {
-		return rows;
-	}
-
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
 	public String getSort() {
 		return sort;
 	}
@@ -255,6 +234,5 @@ public class Baby implements Serializable{
 	public void setOrder(String order) {
 		this.order = order;
 	}
-	
 
 }

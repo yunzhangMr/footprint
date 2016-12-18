@@ -17,131 +17,106 @@ import javax.persistence.TemporalType;
  * @author
  *
  */
-@Entity
-@Table(name="F_BABYPROFILE")
 public class BabyProfile implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * ID
 	 */
-	@Id
-	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer profileId;
+	private Integer id;
 	
 	/**
 	 * 宝宝ID
 	 */
-	@Column(name = "BABY_ID")
-	private String babyid;
+	private String baby_id;
 	
 	/**
 	 * 姓名
 	 */
-	@Column(name = "BABY_NAME" , length = 50)
-	private String babyname;
+	private String baby_name;
 	
 	/**
 	 * 年度
 	 */
-	@Column(name = "CREATEYEAR" , length = 20)
 	private String createyear;
 	
 	/**
 	 * 学期
 	 */
-	@Column(name = "TERM" , length=20)
 	private String term;
-	
-	/**
-	 * 宝宝-班级ID
-	 */
-	@Column(name = "B_C_ID")
-	private Integer b_c_id;
 	
 	/**
 	 * 年级
 	 */
-	@Column(name = "GRADE" , length=20)
 	private String grade;
 	
 	/**
 	 * 创建日期
 	 */
-	@Column(name = "CREATEDATE" , columnDefinition = "DATE")
 	private Date createdate;
 	
 	/**
 	 * 过敏反应
 	 */
-	@Column(name = "ALLERGENIC" , length = 250)
 	private String allergenic;
 	
 	/**
 	 * 疾病或先天病史
 	 */
-	@Column(name = "CONGENITAL" , length = 250)
 	private String congenital;
 	
 	/**
 	 * 现在身体状况
 	 */
-	@Column(name = "HEALTH" , length = 250)
 	private String health;
 	
 	/**
 	 * 喜欢的食物
 	 */
-	@Column(name = "FAVFOOD" , length = 250)
 	private String favfood;
 	
 	/**
 	 * 喜欢的朋友
 	 */
-	@Column(name = "FRIEND" , length = 250)
 	private String friend;
 	
 	/**
 	 * 喜欢做的事
 	 */
-	@Column(name = "LIKETODO" , length = 250)
 	private String liketodo;
 	
 	/**
 	 * 性格特点
 	 */
-	@Column(name = "PERSONALITY" , length = 250)
 	private String personality;
 	
 	/**
 	 * 自理能力
 	 */
-	@Column(name = "SELFCARE" , length = 250)
 	private String selfcare;
 
-	public Integer getProfileId() {
-		return profileId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setProfileId(Integer profileId) {
-		this.profileId = profileId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getBabyid() {
-		return babyid;
+	public String getBaby_id() {
+		return baby_id;
 	}
 
-	public void setBabyid(String babyid) {
-		this.babyid = babyid;
+	public void setBaby_id(String baby_id) {
+		this.baby_id = baby_id;
 	}
 
-	public String getBabyname() {
-		return babyname;
+	public String getBaby_name() {
+		return baby_name;
 	}
 
-	public void setBabyname(String babyname) {
-		this.babyname = babyname;
+	public void setBaby_name(String baby_name) {
+		this.baby_name = baby_name;
 	}
 
 	public String getCreateyear() {
@@ -158,14 +133,6 @@ public class BabyProfile implements Serializable{
 
 	public void setTerm(String term) {
 		this.term = term;
-	}
-
-	public Integer getB_c_id() {
-		return b_c_id;
-	}
-
-	public void setB_c_id(Integer b_c_id) {
-		this.b_c_id = b_c_id;
 	}
 
 	public String getGrade() {

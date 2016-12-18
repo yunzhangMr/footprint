@@ -21,6 +21,10 @@ import javax.persistence.TemporalType;
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 唯一序列号
+	 */
+	private Integer sid;
 	
 	/**
 	 * 登录ID
@@ -68,6 +72,16 @@ public class User implements Serializable{
 	private Integer nurseryid;
 	
 	/**
+	 * 幼儿园名字
+	 */
+	private String nurseryname;
+	
+	/**
+	 * 班级编号
+	 */
+	private Integer classId;
+	
+	/**
 	 * 角色ID
 	 */
 	private String roleids;
@@ -75,7 +89,7 @@ public class User implements Serializable{
 	/**
 	 * 状态
 	 */
-	private String status = "N";
+	private String status;
 	
 	/**
 	 * session code
@@ -92,6 +106,15 @@ public class User implements Serializable{
 	private String sort;// sort field
 	private String order;// sort order (asc,desc)
 	private String q;
+	
+
+	public Integer getSid() {
+		return sid;
+	}
+
+	public void setSid(Integer sid) {
+		this.sid = sid;
+	}
 
 	public String getLoginid() {
 		return loginid;
@@ -236,8 +259,37 @@ public class User implements Serializable{
 	public void setQ(String q) {
 		this.q = q;
 	}
+
+	public String getNurseryname() {
+		return nurseryname;
+	}
+
+	public void setNurseryname(String nurseryname) {
+		this.nurseryname = nurseryname;
+	}
+
 	
-	
+	public Integer getClassId() {
+		return classId;
+	}
+
+	public void setClassId(Integer classId) {
+		this.classId = classId;
+	}
+
+	@Override
+	public String toString() {
+		return "User [sid=" + sid + ", loginid=" + loginid + ", username="
+				+ username + ", gender=" + gender + ", password=" + password
+				+ ", phone=" + phone + ", mobile=" + mobile + ", email="
+				+ email + ", createdate=" + createdate + ", nurseryid="
+				+ nurseryid + ", nurseryname=" + nurseryname + ", classId="
+				+ classId + ", roleids=" + roleids + ", status=" + status
+				+ ", sessioncode=" + sessioncode + ", isAdmin=" + isAdmin
+				+ ", page=" + page + ", rows=" + rows + ", sort=" + sort
+				+ ", order=" + order + ", q=" + q + "]";
+	}
+
 	
 
 }

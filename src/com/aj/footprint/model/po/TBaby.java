@@ -29,13 +29,18 @@ public class TBaby implements Serializable{
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer babyid;
+	private Integer id;
 	
 	/**
 	 * 姓名
 	 */
 	@Column(name = "BNAME" , length = 50)
-	private String babyname;
+	private String bname;
+	/**
+	 * 拼音名字
+	 */
+	@Column(name = "NAMESPELL" , length = 64)
+	private String namespell;
 	
 	/**
 	 * 性别
@@ -59,31 +64,26 @@ public class TBaby implements Serializable{
 	 * 家长ID
 	 */
 	@Column(name = "PARENT_ID", length = 50)
-	private String parentId;
+	private String parent_id;
 	
 	/**
 	 * 家长姓名
 	 */
 	@Column(name = "PARENT_NAME", length = 50)
-	private String parentName;
+	private String parent_name;
 	
 	/**
 	 * 幼儿园ID
 	 */
 	@Column(name = "NURSERY_ID")
-	private Integer nurseryid;
-	
-	/**
-	 * 宝宝-班级ID
-	 */
-	@Column(name = "B_C_ID")
-	private Integer b_c_id;
-	
+	private Integer nursery_id;
+
 	/**
 	 * 录入人
 	 */
+	
 	@Column(name = "CREATEUSER" , length = 50)
-	private String createUser;
+	private String createuser;
 	
 	/**
 	 * 创建日期
@@ -115,22 +115,29 @@ public class TBaby implements Serializable{
 	@Column(name = "STATUS" , length = 10)
 	private String status = "N";
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getBname() {
+		return bname;
+	}
+
+	public void setBname(String bname) {
+		this.bname = bname;
+	}
 	
 
-	public Integer getBabyid() {
-		return babyid;
+	public String getNamespell() {
+		return namespell;
 	}
 
-	public void setBabyid(Integer babyid) {
-		this.babyid = babyid;
-	}
-
-	public String getBabyname() {
-		return babyname;
-	}
-
-	public void setBabyname(String babyname) {
-		this.babyname = babyname;
+	public void setNamespell(String namespell) {
+		this.namespell = namespell;
 	}
 
 	public String getGender() {
@@ -157,44 +164,36 @@ public class TBaby implements Serializable{
 		this.phone = phone;
 	}
 
-	public String getParentId() {
-		return parentId;
+	public String getParent_id() {
+		return parent_id;
 	}
 
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
+	public void setParent_id(String parent_id) {
+		this.parent_id = parent_id;
 	}
 
-	public String getParentName() {
-		return parentName;
+	public String getParent_name() {
+		return parent_name;
 	}
 
-	public void setParentName(String parentName) {
-		this.parentName = parentName;
+	public void setParent_name(String parent_name) {
+		this.parent_name = parent_name;
 	}
 
-	public Integer getNurseryid() {
-		return nurseryid;
+	public Integer getNursery_id() {
+		return nursery_id;
 	}
 
-	public void setNurseryid(Integer nurseryid) {
-		this.nurseryid = nurseryid;
+	public void setNursery_id(Integer nursery_id) {
+		this.nursery_id = nursery_id;
 	}
 
-	public Integer getB_c_id() {
-		return b_c_id;
+	public String getCreateuser() {
+		return createuser;
 	}
 
-	public void setB_c_id(Integer b_c_id) {
-		this.b_c_id = b_c_id;
-	}
-
-	public String getCreateUser() {
-		return createUser;
-	}
-
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
+	public void setCreateuser(String createuser) {
+		this.createuser = createuser;
 	}
 
 	public Date getCreatedate() {
@@ -236,7 +235,6 @@ public class TBaby implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
 
+	
 }

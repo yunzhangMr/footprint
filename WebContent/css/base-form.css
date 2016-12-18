@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+/*
+	面板头、面板主体
+	wrap下为面板（panel）
+*/
+.wrap{
+	padding:10px 15px 0px;
+}
+.panel-expand1{
+	margin-bottom:0px;
+}
+.panel-body-expand1{
+	padding:10px;
+}
+.content{
+	padding-top:40px;
+}
+.tAlign{
+	text-align: center;
+}
+.label-expand{
+	text-align: right;
+}
+.row-btn{
+	padding:20px 0 20px 2%;
+}

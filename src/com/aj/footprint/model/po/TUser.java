@@ -24,11 +24,18 @@ public class TUser implements Serializable{
 	
 	
 	/**
-	 * 登录ID
+	 * 唯一序列号
 	 */
 	@Id
+	@Column(name = "SID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer sid;
+	
+	
+	/**
+	 * 登录ID
+	 */
 	@Column(name = "ID" , length = 50)
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String loginid;
 	
 	/**
@@ -80,6 +87,18 @@ public class TUser implements Serializable{
 	private Integer nurseryid;
 	
 	/**
+	 * 幼儿园名字
+	 */
+	@Column(name = "NURSERY_NAME", length = 50)
+	private String nurseryname;
+	
+	/**
+	 * 班级编号
+	 */
+	@Column(name = "CLASS_ID")
+	private Integer classId;
+	
+	/**
 	 * 角色ID
 	 */
 	@Column(name = "ROLEIDS")
@@ -102,6 +121,16 @@ public class TUser implements Serializable{
 	 */
 	@Column(name="ISADMIN",length=2)
 	private String isAdmin = "N";
+	
+	
+
+	public Integer getSid() {
+		return sid;
+	}
+
+	public void setSid(Integer sid) {
+		this.sid = sid;
+	}
 
 	public String getLoginid() {
 		return loginid;
@@ -199,14 +228,44 @@ public class TUser implements Serializable{
 		this.isAdmin = isAdmin;
 	}
 
-	public String getRoleid() {
+	public String getRoleids() {
 		return roleids;
 	}
 
 	public void setRoleids(String roleids) {
 		this.roleids = roleids;
 	}
+
+	public String getNurseryname() {
+		return nurseryname;
+	}
+
+	public void setNurseryname(String nurseryname) {
+		this.nurseryname = nurseryname;
+	}
+
 	
+	public Integer getClassId() {
+		return classId;
+	}
+
+	public void setClassId(Integer classId) {
+		this.classId = classId;
+	}
+
+	@Override
+	public String toString() {
+		return "TUser [sid=" + sid + ", loginid=" + loginid + ", username="
+				+ username + ", gender=" + gender + ", password=" + password
+				+ ", phone=" + phone + ", mobile=" + mobile + ", email="
+				+ email + ", createdate=" + createdate + ", nurseryid="
+				+ nurseryid + ", nurseryname=" + nurseryname + ", classId="
+				+ classId + ", roleids=" + roleids + ", status=" + status
+				+ ", sessioncode=" + sessioncode + ", isAdmin=" + isAdmin + "]";
+	}
+
+	
+
 	
 
 }

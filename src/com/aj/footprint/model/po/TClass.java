@@ -16,34 +16,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Table(name = "F_CLASS")
 public class TClass implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * ID
 	 */
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer classid;
+	private Integer id;
+	
 	/**
 	 * 名称
 	 */
-
 	@Column(name = "CNAME", length = 50)
-	private String name;
+	private String cname;
+	
 	/**
 	 * 幼儿园id
 	 */
-	@Column(name = "NURSERY_ID", length = 11)
-	private Integer nuseryid;
+	@Column(name = "NURSERY_ID")
+	private Integer nursery_id;
+	
 	/**
 	 * 幼儿园名字
 	 */
 	@Column(name = "NURSERY_NAME", length = 50)
-	private String nurseryname;
+	private String nursery_name;
+	
 	/**
 	 * 创建日期
 	 */
-	@Column(name = "CEATEDATE")
-	private Date ceatedate;
+	@Column(name = "CREATEDATE")
+	private Date createdate;
+	
 	/**
 	 * 学年
 	 */
@@ -53,13 +58,13 @@ public class TClass implements Serializable {
 	/**
 	 * 年级
 	 */
-	@Column(name = "GRADE", length = 5)
+	@Column(name = "GRADE", length = 20)
 	private String grade;
 
 	/**
 	 * 学期
 	 */
-	@Column(name = "TERM", length = 5)
+	@Column(name = "TERM", length = 20)
 	private String term;
 
 	/**
@@ -73,11 +78,13 @@ public class TClass implements Serializable {
 	 */
 	@Column(name = "TEACHER1ID", length = 50)
 	private String teacher1id;
+	
 	/**
 	 * 教师2id
 	 */
 	@Column(name = "TEACHER2ID", length = 50)
 	private String teacher2id;
+	
 	/**
 	 * 教师3id
 	 */
@@ -95,50 +102,63 @@ public class TClass implements Serializable {
 	 */
 	@Column(name = "TEACHER2NAME", length = 50)
 	private String teacher2name;
+	
 	/**
 	 * 教师3姓名
 	 */
 	@Column(name = "TEACHER3NAME", length = 50)
 	private String teacher3name;
+	
+	/**
+	 * 上学期班级id
+	 */
+	@Column(name = "PREVIOUS_ID")
+	private Integer previous_id;
+	
+	/**
+	 * 班级状态 （1为正常，0为已删除）
+	 */
+	@Column(name = "STATUS", length = 10)
+	private String status;
 
-	public Integer getClassid() {
-		return classid;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setClassid(Integer classid) {
-		this.classid = classid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getCname() {
+		return cname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
 
-	public Integer getNuseryid() {
-		return nuseryid;
+	public Integer getNursery_id() {
+		return nursery_id;
 	}
 
-	public void setNuseryid(Integer nuseryid) {
-		this.nuseryid = nuseryid;
+	public void setNursery_id(Integer nursery_id) {
+		this.nursery_id = nursery_id;
 	}
 
-	public String getNurseryname() {
-		return nurseryname;
+	public String getNursery_name() {
+		return nursery_name;
 	}
 
-	public void setNurseryname(String nurseryname) {
-		this.nurseryname = nurseryname;
+	public void setNursery_name(String nursery_name) {
+		this.nursery_name = nursery_name;
 	}
 
-	public Date getCeatedate() {
-		return ceatedate;
+	public Date getCreatedate() {
+		return createdate;
 	}
 
-	public void setCeatedate(Date ceatedate) {
-		this.ceatedate = ceatedate;
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
 	}
 
 	public String getCreateyear() {
@@ -212,6 +232,7 @@ public class TClass implements Serializable {
 	public void setTeacher2name(String teacher2name) {
 		this.teacher2name = teacher2name;
 	}
+
 	public String getTeacher3name() {
 		return teacher3name;
 	}
@@ -220,4 +241,21 @@ public class TClass implements Serializable {
 		this.teacher3name = teacher3name;
 	}
 
+	public Integer getPrevious_id() {
+		return previous_id;
+	}
+
+	public void setPrevious_id(Integer previous_id) {
+		this.previous_id = previous_id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	
 }

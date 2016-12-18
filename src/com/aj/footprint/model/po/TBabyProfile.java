@@ -28,19 +28,19 @@ public class TBabyProfile implements Serializable{
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer profileId;
+	private Integer id;
 	
 	/**
 	 * 宝宝ID
 	 */
 	@Column(name = "BABY_ID")
-	private String babyid;
+	private String baby_id;
 	
 	/**
 	 * 姓名
 	 */
 	@Column(name = "BABY_NAME" , length = 50)
-	private String babyname;
+	private String baby_name;
 	
 	/**
 	 * 年度
@@ -53,12 +53,13 @@ public class TBabyProfile implements Serializable{
 	 */
 	@Column(name = "TERM" , length=20)
 	private String term;
-	
-	/**
-	 * 宝宝-班级ID
-	 */
-	@Column(name = "B_C_ID")
-	private Integer b_c_id;
+
+//   有了关联表了，这个外键就不要了    get-set方法也注掉了
+//	/**
+//	 * 宝宝-班级ID
+//	 */
+//	@Column(name = "B_C_ID")
+//	private Integer b_c_id;
 	
 	/**
 	 * 年级
@@ -120,28 +121,28 @@ public class TBabyProfile implements Serializable{
 	@Column(name = "SELFCARE" , length = 250)
 	private String selfcare;
 
-	public Integer getProfileId() {
-		return profileId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setProfileId(Integer profileId) {
-		this.profileId = profileId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getBabyid() {
-		return babyid;
+	public String getBaby_id() {
+		return baby_id;
 	}
 
-	public void setBabyid(String babyid) {
-		this.babyid = babyid;
+	public void setBaby_id(String baby_id) {
+		this.baby_id = baby_id;
 	}
 
-	public String getBabyname() {
-		return babyname;
+	public String getBaby_name() {
+		return baby_name;
 	}
 
-	public void setBabyname(String babyname) {
-		this.babyname = babyname;
+	public void setBaby_name(String baby_name) {
+		this.baby_name = baby_name;
 	}
 
 	public String getCreateyear() {
@@ -158,14 +159,6 @@ public class TBabyProfile implements Serializable{
 
 	public void setTerm(String term) {
 		this.term = term;
-	}
-
-	public Integer getB_c_id() {
-		return b_c_id;
-	}
-
-	public void setB_c_id(Integer b_c_id) {
-		this.b_c_id = b_c_id;
 	}
 
 	public String getGrade() {
@@ -248,5 +241,5 @@ public class TBabyProfile implements Serializable{
 		this.selfcare = selfcare;
 	}
 
-
+	
 }

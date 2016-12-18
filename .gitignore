@@ -1,49 +1,193 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# Created by .ignore support plugin (hsz.mobi)
+### Eclipse template
 
-# Folder config file
-Desktop.ini
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+.idea
+local.properties
+.settings/
+.loadpath
+.recommenders
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Eclipse Core
+.project
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# External tool builders
+.externalToolBuilders/
 
-# Windows shortcuts
-*.lnk
+# Locally stored "Eclipse launch configurations"
+*.launch
 
-# =========================
-# Operating System Files
-# =========================
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
 
-# OSX
-# =========================
+# CDT-specific (C/C++ Development Tooling)
+.cproject
 
-.DS_Store
-.AppleDouble
-.LSOverride
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
 
-# Thumbnails
-._*
+# Java annotation processor (APT)
+.factorypath
 
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
+# PDT-specific (PHP Development Tools)
+.buildpath
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-classes/
-*.class
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+### JetBrains template
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+
+# Sensitive or high-churn files:
+.idea/dataSources/
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+
+# Gradle:
+.idea/gradle.xml
+.idea/libraries
+
+# Mongo Explorer plugin:
+.idea/mongoSettings.xml
+
+## File-based project format:
+*.iws
+
+## Plugin-specific files:
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+将删除 .gitignore
+将删除 .idea/workspace.xml
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/controller/AdminController.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/controller/BabyClassesController.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/controller/BabyController.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/controller/ClassController.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/controller/DoctorEvaluateController.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/controller/DoctorInfoController.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/controller/ItemController.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/controller/ItemScoreController.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/controller/OwnInfoController.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/controller/TeacherRegisterController.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TActionLog.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TBabyClasses.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TClass.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TCommentPM.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TCommentPT.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TCommentTM.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TCommentTT.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TGrade.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/THealth.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TItem.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TItemScore.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TMoveLog.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TNote.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TNursery.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TNurseryLevel.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TNurseryNature.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TPItem.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TPItemScore.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TRole.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TSequenceAuto.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TStage.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TTemplete.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/po/TTerm.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/ActionLog.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/BabyClasses.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Classes.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/CommentPM.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/CommentPT.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/CommentTM.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/CommentTT.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Grade.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Health.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Item.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/ItemScore.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/MoveLog.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Note.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Nursery.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/NurseryLevel.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/NurseryNature.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/PItem.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/PItemScore.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Pagination.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Role.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Stage.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Templete.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/model/vo/Term.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/BabyClassServiceI.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/ClassServicel.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/DoctorEvaluateServicel.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/DoctorInfoServicel.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/ItemScoreServiceI.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/ItemServiceI.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/OwnInfoServicel.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/SequenceAutoI.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/TeacherRegisterServicel.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/impl/BabyClassServiceImpl.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/impl/ClassServiceImpl.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/impl/DoctorEvaluateServicelmpl.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/impl/DoctorInfoServiceImpl.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/impl/ItemScoreServiceImpl.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/impl/ItemServiceImpl.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/impl/OwnInfoServiceImpl.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/impl/SequenceAutoImpl.class
+将删除 WebContent/WEB-INF/classes/com/aj/footprint/service/impl/TeacherRegisterServiceImpl.class
+将删除 WebContent/WEB-INF/classes/com/aj/general/util/.svn/
+将删除 WebContent/WEB-INF/classes/com/aj/general/util/DecodeUtil.class
+将删除 WebContent/WEB-INF/classes/com/aj/general/util/JspUtils.class
+将删除 WebContent/js/layer/.svn/prop-base/
+将删除 WebContent/js/layer/.svn/props/
+将删除 WebContent/js/layer/.svn/text-base/
+将删除 WebContent/js/layer/.svn/tmp/
+将删除 WebContent/js/metisMenu/.svn/prop-base/
+将删除 WebContent/js/metisMenu/.svn/props/
+将删除 WebContent/js/metisMenu/.svn/text-base/
+将删除 WebContent/js/metisMenu/.svn/tmp/
+将删除 WebContent/js/pace/.svn/prop-base/
+将删除 WebContent/js/pace/.svn/props/
+将删除 WebContent/js/pace/.svn/text-base/
+将删除 WebContent/js/pace/.svn/tmp/
+将删除 WebContent/js/slimscroll/.svn/prop-base/
+将删除 WebContent/js/slimscroll/.svn/props/
+将删除 WebContent/js/slimscroll/.svn/text-base/
+将删除 WebContent/js/slimscroll/.svn/tmp/

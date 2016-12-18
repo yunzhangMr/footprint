@@ -1,11 +1,16 @@
+<%@page import="com.aj.footprint.model.vo.SessionInfo"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" session="false"%>
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <% 
-String roleids = "1";
+//String roleids = "2";
+//String roleids = "1";
+
+SessionInfo session = (SessionInfo)request.getSession().getAttribute("sessionInfo");
+String roleids = session.getRoleIds();
 
 %>
 <head>
@@ -19,14 +24,12 @@ String roleids = "1";
 <meta name="format-detection" content="telephone=no">
 
 <script src="${pageContext.request.contextPath}/resource/jquery-1.9.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/js/bootstrap-table.js"></script>
-<script src="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/js/bootstrap-table-zh-CN.js"></script>
+<script src="${pageContext.request.contextPath}/resource/bootstrap/js/bootstrap.min.js"></script> 
+<script src="${pageContext.request.contextPath}/js/json/json2.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/css/bootstrap.css" rel="stylesheet"/>
-<link type="text/css" href="${pageContext.request.contextPath}/resource/bootstrap-3.3.0-dist/dist/css/bootstrap-table.min.css" rel="stylesheet"/>   
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/bootstrap/css/bootstrap.css" rel="stylesheet"/>
 
 <script>
     
@@ -36,11 +39,14 @@ String roleids = "1";
          type : 'POST',
          datatype : 'JSON',
          url :  '${pageContext.request.contextPath}/menuController/dogetMenu',
-         data : {roleids:'<%=roleids%>'},
+         data : {roleids:'<%=roleids %>'},
 		 success : function(data) {
 			var obj = jQuery.parseJSON(data);
 			for(var i in obj){ 
-				var div = "<div id='"+obj[i].url+"' class='meun-item' href='"+obj[i].url+"' onclick=\"addclick('"+obj[i].url+"')\">"+obj[i].fname+"</div>";
+				var url = obj[i].url;
+				var urls = url.split("/");
+				var id = urls[urls.length-1];
+				var div = "<div id='"+id+"' class='meun-item' href='"+obj[i].url+"' onclick=\"addclick('"+obj[i].url+"','"+id+"')\">"+obj[i].fname+"</div>";
 			    $("#title").append(div);						  
 			}
     
@@ -52,12 +58,12 @@ String roleids = "1";
 	});
     });
    
-    function addclick(href) {	
+    function addclick(href,id) {	
        //给菜单添加点击事件       
 	        $("#content").empty();
 			$(".meun-item").removeClass("meun-item-active");
-			$('#'+href).addClass("meun-item-active");
-			$("#content").load("../view/admin/"+href+".jsp");
+			$('#'+id).addClass("meun-item-active");
+			$("#content").load("../view/"+href+".jsp");
 	}
        
 </script>
@@ -66,22 +72,22 @@ String roleids = "1";
 <title>小脚印</title>
 
 <style>
-img {height:200px;width:100%;}
+img {height:50px;width:100%;}
 
 </style>
 </head>
 <body>
 <div id="wrap">
            <!-- banner图 -->
-            <div class="row-fluid" id="banner">
+       <!--      <div class="row-fluid" id="banner">
 	       </div>
 				<script type="text/javascript">
 				    $("#banner").load("../view/layout/banner.jsp");
-				</script>
+				</script> -->
 			<!-- 左侧菜单栏目块 -->
 			<div class="leftMeun" id="leftMeun">
 				<div id="personInfor">
-					<p id="userName">杨鹏</p>
+					<p id="userName">${sessionScope.sessionInfo.term}</p>
 					<p><span>yangxp@qq.com</span></p>
 					<p>
 						<a>退出登录</a>
