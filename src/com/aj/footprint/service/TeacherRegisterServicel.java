@@ -7,4 +7,6 @@ public interface TeacherRegisterServicel {
 	public String getBNameSpell(String bnamespell);
 	
 	public String doSaveBaby(TBaby tbaby);
+	
+	public int checkSpell(String namespell);
 }

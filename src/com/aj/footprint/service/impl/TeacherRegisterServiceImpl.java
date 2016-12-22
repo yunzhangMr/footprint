@@ -82,11 +82,22 @@ public class TeacherRegisterServiceImpl implements TeacherRegisterServicel{
 		tuser.setRoleids("3");
 		tuser.setCreatedate(new Date());
 		tuser.setNurseryid(tbaby.getNursery_id());
+		tuser.setStatus("Y");
+		tbaby.setStatus("Y");
 
 		tbabyDao.save(tbaby);
 		tuserDao.save(tuser);
 			
 		return "success";
+	}
+	
+	//校验名字拼音是否存在
+	
+	public int checkSpell(String namespell){
+		
+		String sql = " select count(id) from f_baby where namespell=? ";
+		
+		return tbabyDao.findCountBySql(sql, new Object[]{namespell});
 	}
 
 }

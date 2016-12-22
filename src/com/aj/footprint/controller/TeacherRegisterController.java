@@ -36,7 +36,12 @@ public class TeacherRegisterController {
 	
 	@ResponseBody
 	@RequestMapping(value="/doSaveBaby")
-	public String doSaveBaby(HttpServletRequest request,TBaby tbaby,String bbirth){
+	public String doSaveBaby(HttpServletRequest request,TBaby tbaby,String bbirth) throws Exception{
+		
+		boolean isuse = checkSpell(tbaby.getNamespell());
+		if(!isuse){
+			return "fail";
+		}
 		
 		SessionInfo sessionInfo = (SessionInfo)request.getSession().getAttribute("sessionInfo");
 		tbaby.setNursery_id(sessionInfo.getNurseryid());		
@@ -44,16 +49,23 @@ public class TeacherRegisterController {
 		tbaby.setCreatedate(new Date());
 		tbaby.setParent_id(tbaby.getNamespell());
 		
-		SimpleDateFormat format =   new SimpleDateFormat( "yyyy-MM-dd" );
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date birth = sdf.parse(bbirth);
+		tbaby.setBirth(birth);
+				
+		return teacherRegisterServicel.doSaveBaby(tbaby);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/checkSpell")
+	public boolean checkSpell(String namespell){
 		
-		try {
-			Date birth = (Date)format.parseObject(bbirth);
-			tbaby.setBirth(birth);
-		} catch (ParseException e) {
-			e.printStackTrace();
+		int count = teacherRegisterServicel.checkSpell(namespell);
+		if(count>0){
+			return false;
 		}
 		
-		return teacherRegisterServicel.doSaveBaby(tbaby);
+		return true;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.aj.footprint.controller;
+/*package com.aj.footprint.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -64,3 +64,4 @@ public class AdminController {
 	
 	
 }
+*/

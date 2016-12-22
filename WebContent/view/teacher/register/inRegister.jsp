@@ -9,9 +9,11 @@
 <script src="${pageContext.request.contextPath}/resource/datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="${pageContext.request.contextPath}/resource/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
 <script src="${pageContext.request.contextPath}/resource/bootstrapValidator/bootstrapValidator.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/bootstrap/js/bootstrap.min.js"></script> 
 <link type="text/css" href="${pageContext.request.contextPath}/resource/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
-<link type="text/css" href="${pageContext.request.contextPath}/resource/bootstrapValidator/bootstrapValidator.min.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/bootstrap/css/bootstrap.min.css" />
 <link type="text/css" href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet"/>
+<link type="text/css" href="${pageContext.request.contextPath}/resource/bootstrapValidator/bootstrapValidator.min.css" rel="stylesheet"/>
 <title>宝宝入园登记</title>
 </head>
 <script type="text/javascript">
@@ -79,12 +81,11 @@ $(function(){
 	                    }
 	                }
 	            },
-	            confirmpassword: {
+	            bbirth: {
 	                validators: {
-	                	 identical: {
-	                     	field: 'password',
-	                     	message: '两次输入的密码不一致'
-	                     	},
+	                	notEmpty: {
+	                        message: '出生日期不能为空'
+	                    },
 	                }
 	            }
 	        }
@@ -106,7 +107,7 @@ function changeToSpell(){
 		type : 'POST',
         datatype : 'JSON',
         url :  '${pageContext.request.contextPath}/teacherRegisterController/checkNameSpell',
-        data : {bnamespell:bnamespell},
+        data : {"bnamespell":bnamespell},
 		 success : function(data) {
 			var obj = jQuery.parseJSON(data);
 	         $('#namespell').val(obj);				  
@@ -124,6 +125,10 @@ function changeToSpell(){
 
 function dosave(){
 
+	var isused = $('#isused').text();
+	if(isused=='不可用'){
+		return ;
+	}
 	$('#registerform').data('bootstrapValidator').validate();  //手动调用验证
     var flag = $('#registerform').data('bootstrapValidator').isValid();   //获取验证状态
     if(!flag){
@@ -144,7 +149,9 @@ function dosave(){
 	        	$('#bbirth').val("");
 	        	alert("保存成功！");
 	        }
-	        else{
+	        else if(obj=='fail'){
+	        	alert("已经存在该用户,保存失败！");
+	        }else{
 	        	alert("保存失败！");
 	        }
 		 },
@@ -154,6 +161,31 @@ function dosave(){
 	});
 }
 
+function checknamespellchange(){
+	
+	var namespell = $('#namespell').val();
+	if(namespell==''){
+		return;
+	}
+	$.ajax({
+		type : 'POST',
+        datatype : 'JSON',
+        url :  '${pageContext.request.contextPath}/teacherRegisterController/checkSpell',
+        data : {"namespell":namespell},
+		 success : function(data) {
+			 var obj = jQuery.parseJSON(data);
+			 if(obj){			 
+			     $('#isused').text("可用");
+			 }else{
+			     $('#isused').text("不可用");
+			 }
+		 },
+        error:function(data){
+       	 alert("验证失败");   
+        }
+		
+	});
+}
 
 </script>
 
@@ -176,7 +208,7 @@ function dosave(){
       
     <label class="control-label col-sm-2 label-expand "  for="bbirth">出生日期</label>
       <div class="col-sm-3 text-expand">
-       <input type="text" class="form-control input-sm form_datetime_2"  id="bbirth" name="bbirth">
+       <input type="text" class="form-control input-sm form_datetime_2" readOnly="true"  id="bbirth" name="bbirth">
       </div> 
 	 </div>
 	 
@@ -184,7 +216,8 @@ function dosave(){
        
       <label class="control-label col-sm-2 label-expand "  for="namespell">姓名拼音</label>
       <div class="col-sm-3 text-expand">
-       <input type="text" class="form-control input-sm "  id="namespell" name="namespell">
+       <input type="text" class="form-control input-sm " onBlur="checknamespellchange()" id="namespell" name="namespell">
+       <span id="isused" style="color:red;"></span>
       </div>  
         <label class="control-label col-sm-2 label-expand"  for="phone">电话号码</label>
       <div class="col-sm-3 text-expand">
@@ -204,7 +237,7 @@ function dosave(){
 	      <input id="bsex1" name="gender"  value="男" type="radio"><span>男</span>&nbsp;&nbsp;
 	      <input id="bsex2" name="gender"  value="女" type="radio"><span>女</span>
       </div>
-      
+      	
      	 
        <a class="col-sm-2  btn btn-primary" style="width:150px;" onclick="dosave()">保存</a>
       

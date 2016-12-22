@@ -69,7 +69,6 @@ public class Pagination extends JdbcDaoSupport{
 	    setStartIndex();
 	    //计算结束行数
 	    setLastIndex();
-	    System.out.println("lastIndex="+lastIndex);//////////////////
 	    
 	    //构造oracle数据库的分页语句
 	   /** StringBuffer paginationSQL = new StringBuffer(" SELECT * FROM ( ");
@@ -177,8 +176,7 @@ public class Pagination extends JdbcDaoSupport{
 	   
 	 //计算结束时候的索引
 	  public void setLastIndex() {
-	    System.out.println("totalRows="+totalRows);///////////
-	    System.out.println("numPerPage="+numPerPage);///////////
+
 	    if( totalRows < numPerPage){
 	      this.lastIndex = totalRows;
 	    }else if((totalRows % numPerPage == 0) || (totalRows % numPerPage != 0 && currentPage < totalPages)){
