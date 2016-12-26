@@ -50,7 +50,7 @@ public class ItemScoreServiceImpl implements ItemScoreServiceI {
 		int count = 0;
 		for(Map<String, Object> map : items){
 			long itemCode = Long.parseLong(map.get("code").toString());
-			String sql = "insert into f_item_score(stage,class_id,term,grade,createyear,item_code,baby_id,baby_name,baby_gender,nursery_id,teacher_id,teacher_name) (select '"+stage+"','"+classId+"','"+term+"','"+grade+"','"+createyear+"','"+itemCode+"',b.id,b.bname,b.gender,'"+nurseryId+"','"+teacherId+"','"+teacherName+"' from f_baby b left join f_baby_class bc on b.id=bc.baby_id where 1=1 and bc.class_id='2' and bc.`status` = 'N')";
+			String sql = "insert into f_item_score(stage,class_id,term,grade,createyear,item_code,baby_id,baby_name,baby_gender,nursery_id,teacher_id,teacher_name) (select '"+stage+"','"+classId+"','"+term+"','"+grade+"','"+createyear+"','"+itemCode+"',b.id,b.bname,b.gender,'"+nurseryId+"','"+teacherId+"','"+teacherName+"' from f_baby b left join f_baby_class bc on b.id=bc.baby_id where 1=1 and bc.class_id='"+classId+"' and bc.`status` = 'N')";
 			count += itemScoreDao.excuteBySql(sql);
 		}
 		return count;

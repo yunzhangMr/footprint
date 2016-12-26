@@ -1,5 +1,6 @@
 package com.aj.footprint.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -37,8 +38,29 @@ public class BabyClassServiceImpl implements BabyClassServiceI {
 		if(!StringUtils.isEmpty((String)params.get("name"))){
 			sql += " and b.bname like '%%"+(String)params.get("name")+"%%'";
 		}
+		if(!StringUtils.isEmpty((String)params.get("birth"))){
+			sql += " and b.birth = '"+(String)params.get("name")+"'";
+		}
 		System.out.println(sql);
 		return babyClassesDao.queryPage(sql,limit,offset);
+	}
+
+	public List<Map<String, Object>> queryBabys(Map<String, Object> params) {
+		String sql = "select b.*,bc.class_id from f_baby b left join f_baby_class bc on b.id=bc.baby_id where 1=1 ";
+		if(!StringUtils.isEmpty((String)params.get("classId"))){
+			sql += " and bc.class_id='"+(String)params.get("classId")+"'";
+		}
+		if(!StringUtils.isEmpty((String)params.get("status"))){
+			sql += " and bc.`status` = '"+(String)params.get("status")+"'";
+		}
+		if(!StringUtils.isEmpty((String)params.get("name"))){
+			sql += " and b.bname like '%%"+(String)params.get("name")+"%%'";
+		}
+		if(!StringUtils.isEmpty((String)params.get("birth"))){
+			sql += " and b.birth like '%%"+(String)params.get("birth")+"%%'";
+		}
+		System.out.println(sql);
+		return babyClassesDao.query(sql);
 	}
 
 }

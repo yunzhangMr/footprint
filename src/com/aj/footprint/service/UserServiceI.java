@@ -48,4 +48,12 @@ public interface UserServiceI {
 	 */
 	public void updateBase(User user);
 	
+	/**
+	 * 根据sid,角色查询一些其他相关信息
+	 * @param sid
+	 * @param roleids
+	 * @return
+	 */
+	public List<Map<String, Object>> queryOthers(Integer sid,String roleids);
+	
 }

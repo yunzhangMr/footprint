@@ -88,6 +88,11 @@
                align: 'center'
            },
            {
+               title: '班级ID',
+               field: 'class_id',
+               align: 'center'
+           },
+           {
                title: '电话',
                field: 'telephone',
                align: 'center'
@@ -104,7 +109,7 @@
                formatter:function(value){  
    	            	if(value=='1'){return '园长';}
    	            	if(value=='2'){return '老师';}
-   	            	if(value=='3'){return '医生';}
+   	            	if(value=='4'){return '医生';}
    	             }
            },
            {
@@ -174,7 +179,7 @@
     		var json = new Object();
     		var person = new Array();
     		if($this.attr("id").substring(8)=='principal'){json.roleids = '1';}
-    		if($this.attr("id").substring(8)=='doctor'){json.roleids = '3';}
+    		if($this.attr("id").substring(8)=='doctor'){json.roleids = '4';}
     		if($this.attr("id").substring(8)=='teacher'){json.roleids = '2';}
     		if($this.attr("id").substring(8)=='password'){json.password = '123456';}
     		$("input[data-index]:checked").each(function () {

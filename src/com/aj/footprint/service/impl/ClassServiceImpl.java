@@ -156,7 +156,7 @@ public class ClassServiceImpl implements ClassServicel{
 				+")";
 		}
 		sql += "order by id desc";
-		System.out.println(sql);
+		/*System.out.println(sql);*/
 		return classDao.queryPage(sql,limit,offset);	
 		
 	}

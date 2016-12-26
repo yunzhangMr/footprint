@@ -1,4 +1,4 @@
-/*package com.aj.footprint.controller;
+package com.aj.footprint.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -33,18 +33,18 @@ public class AdminController {
 	public Map<String,Object>  babyClassChange(Classes clazz) throws UnsupportedEncodingException{
 		String str = null;
 		String str1 = null;
-		System.out.println("name="+clazz.getName());
+//		System.out.println("name="+clazz.getName());
 		System.out.println("teacherName="+clazz.getTeacherName());
-		str1 = URLDecoder.decode(clazz.getName(), "utf-8");
-		str = URLDecoder.decode(clazz.getTeacherName(), "utf-8");
+//		str1 = URLDecoder.decode(clazz.getName(), "utf-8");
+		/*str = URLDecoder.decode(clazz.getTeacherName(), "utf-8");*/
 		System.out.println("teacherName="+str);
-		System.out.println("pageSize="+clazz.getPageSize());
-		System.out.println("pageNumber="+clazz.getPageNumber());
+		/*System.out.println("pageSize="+clazz.getPageSize());
+		System.out.println("pageNumber="+clazz.getPageNumber());*/
 		System.out.println("offset="+clazz.getOffset());
 		System.out.println("limit="+clazz.getLimit());
 		
 		clazz.setTeacherName(str);
-		clazz.setName(str1);
+//		clazz.setName(str1);
 		
 		DataGrid j = classServicel.datagrid(clazz);
 		Map<String,Object> map= new HashMap<String, Object>();
@@ -64,4 +64,3 @@ public class AdminController {
 	
 	
 }
-*/

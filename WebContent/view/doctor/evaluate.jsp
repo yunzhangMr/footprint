@@ -239,7 +239,7 @@ int month = cal.get(Calendar.MONTH) + 1;
 
 <div class="wrap1">
   <div class="panel panel-default panel-expand1">
-   <div class="panel-body panel-body-expand1 container">
+   <div class="panel-body panel-body-expand1">
     <form id="pjformSearch" class="form-horizontal" role="form">
      <div class="row">   
       <label class="control-label col-sm-1 label-expand"  for="pjyear">所在学年</label>

@@ -1,5 +1,6 @@
 package com.aj.footprint.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.aj.footprint.model.vo.Pagination;
@@ -16,5 +17,6 @@ public interface BabyClassServiceI {
 	public Pagination queryPage(Integer limit, Integer offset,
 			Map<String, Object> params);
 	
-	/*public List<Map<String, Object>> queryBabys(String classid,String status);*/
+	
+	public List<Map<String, Object>> queryBabys(Map<String, Object> params);
 }

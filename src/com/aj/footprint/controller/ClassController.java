@@ -139,30 +139,36 @@ public class ClassController {
 			newUser.setSid(Integer.valueOf(clazz.getTeacher1id()));
 			newUser.setClassId(StringUtils.isEmpty(clazz.getTeacher1id())?0:clazz.getId());
 			userService.updatePart(newUser);
-			User oldUser = new User();
-			oldUser.setSid(Integer.valueOf(clazz.getTeacher1idOld()));
-			oldUser.setClassId(0);
-			userService.updatePart(oldUser);
+			if(!StringUtils.isEmpty(clazz.getTeacher1idOld())){
+				User oldUser = new User();
+				oldUser.setSid(Integer.valueOf(clazz.getTeacher1idOld()));
+				oldUser.setClassId(0);
+				userService.updatePart(oldUser);
+			}
 		}
 		if(!clazz.getTeacher2id().equals(clazz.getTeacher2idOld())){
 			User newUser = new User();
 			newUser.setSid(Integer.valueOf(clazz.getTeacher2id()));
-			newUser.setClassId(StringUtils.isEmpty(clazz.getTeacher1id())?0:clazz.getId());
+			newUser.setClassId(StringUtils.isEmpty(clazz.getTeacher2id())?0:clazz.getId());
 			userService.updatePart(newUser);
-			User oldUser = new User();
-			oldUser.setSid(Integer.valueOf(clazz.getTeacher2idOld()));
-			oldUser.setClassId(0);
-			userService.updatePart(oldUser);
+			if(!StringUtils.isEmpty(clazz.getTeacher2idOld())){
+				User oldUser = new User();
+				oldUser.setSid(Integer.valueOf(clazz.getTeacher2idOld()));
+				oldUser.setClassId(0);
+				userService.updatePart(oldUser);
+			}
 		}
 		if(!clazz.getTeacher3id().equals(clazz.getTeacher3idOld())){
 			User newUser = new User();
 			newUser.setSid(Integer.valueOf(clazz.getTeacher3id()));
-			newUser.setClassId(StringUtils.isEmpty(clazz.getTeacher1id())?0:clazz.getId());
+			newUser.setClassId(StringUtils.isEmpty(clazz.getTeacher3id())?0:clazz.getId());
 			userService.updatePart(newUser);
-			User oldUser = new User();
-			oldUser.setSid(Integer.valueOf(clazz.getTeacher3idOld()));
-			oldUser.setClassId(0);
-			userService.updatePart(oldUser);
+			if(!StringUtils.isEmpty(clazz.getTeacher3idOld())){
+				User oldUser = new User();
+				oldUser.setSid(Integer.valueOf(clazz.getTeacher3idOld()));
+				oldUser.setClassId(0);
+				userService.updatePart(oldUser);
+			}
 		}
 		j.setMsg("修改班级信息成功！");
 		j.setSuccess(true);
@@ -196,7 +202,7 @@ public class ClassController {
 		clazz.setCreateyear(sessionInfo.getCreateyear());
 		clazz.setTerm(sessionInfo.getTerm());
 		clazz.setCreatedate(new Date());
-		clazz.setStatus("1");        //	            查看班级信息	System.out.println(clazz);
+		clazz.setStatus("Y");        //	            查看班级信息	System.out.println(clazz);
 		//如果大班数量不为0，则对应创建相应数量的大班
 		if(clazz.getSeniorClassNum()>0){
 			String maxNum = classServicel.getMaxCNum(sessionInfo.getCreateyear(), "大", sessionInfo.getTerm());

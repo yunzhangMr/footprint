@@ -57,13 +57,23 @@ public class ItemScoreController extends BaseController{
 		if(!StringUtils.isEmpty(babyId)){
 			babyId = DecodeUtil.decodeParameter(babyId);
 		}*/
-		String grade = "大";
+		
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
 		SessionInfo sessionInfo = (SessionInfo)request.getSession().getAttribute("sessionInfo");
 		String term = sessionInfo.getTerm();
-		Integer nursery_id = sessionInfo.getNurseryid();
-		Integer teacher_id = 1;
-		Integer class_id = 2;
+		Integer nursery_id = 0;
+		Integer teacher_id = 0;
+		Integer class_id = 0;
+		String grade = sessionInfo.getGrade();
+		if("3".equals(sessionInfo.getRoleIds())){
+			nursery_id = 0;
+			teacher_id = 112;
+			class_id = 1314;
+		} else {
+			nursery_id = sessionInfo.getNurseryid();
+			teacher_id = sessionInfo.getSid();
+			class_id = Integer.parseInt(sessionInfo.getClassid());
+		}
 		Map<String,Object> map= new HashMap<String, Object>();
 		map.put("rows", itemScoreService.getItemScore(nursery_id, teacher_id, class_id, grade, term, stage ,quota,name,isBaby,babyId));
 		return map;
@@ -77,15 +87,15 @@ public class ItemScoreController extends BaseController{
 		Json j = new Json();
 		
 		//1、 取到所有的评测项目
-		String grade = "大";
-		Integer classId = 2;
-		Integer teacherId = 1;
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
 		SessionInfo sessionInfo = (SessionInfo)request.getSession().getAttribute("sessionInfo");
 		String term = sessionInfo.getTerm();
 		String createyear = sessionInfo.getCreateyear();
 		Integer nurseryId = sessionInfo.getNurseryid();
 		String teacherName = sessionInfo.getUserName();
+		Integer teacherId = sessionInfo.getSid();
+		Integer classId = Integer.parseInt(sessionInfo.getClassid());
+		String grade = sessionInfo.getGrade();
 		List<Map<String, Object>> items = itemService.getItems(grade, term);
 		
 		//2、遍历，将每一项加全班学生的信息录入到评测成绩表中

@@ -289,6 +289,7 @@
 					$('#tb_departments').bootstrapTable('refresh');
 				});
 			}
+			$('#tb_departments').bootstrapTable('refresh');
 		});
 	
 		/*
@@ -307,6 +308,7 @@
 					$('#tb_departments').bootstrapTable('refresh');
 				});
 			}
+			$('#tb_departments').bootstrapTable('refresh');
 		});
     	
 		

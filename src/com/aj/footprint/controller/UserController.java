@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -71,9 +72,17 @@ public class UserController extends BaseController {
 		
 		Json j = new Json();	
 		User u = userService.login(user);
+		List<Map<String, Object>> others = null;
 //		System.out.println(u);
 		if (u != null) {
+			System.out.println(u.getRoleids());
+			/*switch(u.getRoleids())*/
+			if(!"1".equals(u.getRoleids())){
+				others = userService.queryOthers(u.getSid(), u.getRoleids());
+			}
+			System.out.println(others);
 			SessionInfo sessionInfo = new SessionInfo();
+			sessionInfo.setSid(u.getSid());
 			sessionInfo.setLoginId(u.getLoginid());
 			sessionInfo.setUserName(user.getUsername());
 			sessionInfo.setPassword(user.getPassword());
@@ -82,6 +91,24 @@ public class UserController extends BaseController {
 			sessionInfo.setNurseryname(u.getNurseryname());
 			HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
 			sessionInfo.setIp(IpUtil.getIpAddr(request));
+			if("2".equals(u.getRoleids())){
+				for (Map<String, Object> map : others) {
+					if(map.get("grade")!=null){sessionInfo.setGrade(map.get("grade").toString());}
+					if(map.get("cname")!=null){sessionInfo.setCname(map.get("cname").toString());}
+					if(map.get("cnum")!=null){sessionInfo.setCnum(map.get("cnum").toString());}
+					if(map.get("class_id")!=null){sessionInfo.setClassid(map.get("class_id").toString());}
+		        }
+			}
+			if("3".equals(u.getRoleids())){
+				for (Map<String, Object> map : others) {
+					if(map.get("baby_id")!=null){sessionInfo.setBabyid(map.get("baby_id").toString());}
+					if(map.get("baby_name")!=null){sessionInfo.setBabyname(map.get("baby_name").toString());}
+					if(map.get("grade")!=null){sessionInfo.setGrade(map.get("grade").toString());}
+					if(map.get("cname")!=null){sessionInfo.setCname(map.get("cname").toString());}
+					if(map.get("cnum")!=null){sessionInfo.setCnum(map.get("cnum").toString());}
+					if(map.get("class_id")!=null){sessionInfo.setClassid(map.get("class_id").toString());}
+		        }
+			}
 			request.getSession().setAttribute("sessionInfo", sessionInfo);
 			//打印sessionInfo的信息
 			System.out.println(sessionInfo);

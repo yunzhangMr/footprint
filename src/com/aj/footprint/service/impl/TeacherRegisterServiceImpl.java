@@ -14,8 +14,11 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.aj.footprint.model.po.TBaby;
+import com.aj.footprint.model.po.TBabyClasses;
 import com.aj.footprint.model.po.TUser;
 import com.aj.footprint.model.vo.SessionInfo;
 import com.aj.footprint.service.TeacherRegisterServicel;
@@ -29,6 +32,8 @@ public class TeacherRegisterServiceImpl implements TeacherRegisterServicel{
 	private BaseDaoI<TUser> tuserDao;
 	@Autowired
 	private BaseDaoI<TBaby> tbabyDao;
+	@Autowired
+	private BaseDaoI<TBabyClasses> tbabyClassesDao;
 	
 	public String getBNameSpell(String bnamespell){
 		
@@ -84,20 +89,19 @@ public class TeacherRegisterServiceImpl implements TeacherRegisterServicel{
 		tuser.setNurseryid(tbaby.getNursery_id());
 		tuser.setStatus("Y");
 		tbaby.setStatus("Y");
-
-		tbabyDao.save(tbaby);
+		Integer babyid = (Integer)tbabyDao.save(tbaby);
 		tuserDao.save(tuser);
+		
+		TBabyClasses tbabyClasses = new TBabyClasses();
+		tbabyClasses.setBaby_id(babyid);
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
+		SessionInfo sessionInfo = (SessionInfo)request.getSession().getAttribute("sessionInfo");
+		tbabyClasses.setClass_id(Integer.parseInt(sessionInfo.getClassid()));
+		tbabyClasses.setStatus("N");
+		tbabyClassesDao.save(tbabyClasses);
+		
 			
 		return "success";
-	}
-	
-	//校验名字拼音是否存在
-	
-	public int checkSpell(String namespell){
-		
-		String sql = " select count(id) from f_baby where namespell=? ";
-		
-		return tbabyDao.findCountBySql(sql, new Object[]{namespell});
 	}
 
 }

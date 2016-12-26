@@ -112,11 +112,11 @@ body {
 .meun-item {
 	line-height: 40px;
 	height: 40px;
-	color: #aab1b7;
+	color: #fff;
 	cursor: pointer;
 }
 .meun-item a {
-	color: #aab1b7;
+	color: #fff;
 	display: block;
 }
 .meun-item-active a {

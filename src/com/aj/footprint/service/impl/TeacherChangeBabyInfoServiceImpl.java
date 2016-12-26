@@ -53,6 +53,7 @@ public int getClassid(String loginid){
 		
 		sql += " order by b.id ";
 
+		System.out.println(sql);
 		return tBabyDao.queryPage(sql,limit,offset);	
 		
 	}

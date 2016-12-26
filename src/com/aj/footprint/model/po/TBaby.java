@@ -1,8 +1,6 @@
 package com.aj.footprint.model.po;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 宝宝
@@ -55,7 +51,6 @@ public class TBaby implements Serializable{
 	/**
 	 * 生日
 	 */
-	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name = "BIRTH", columnDefinition = "DATE")
 	private Date birth;
 	
@@ -157,8 +152,7 @@ public class TBaby implements Serializable{
 		return birth;
 	}
 
-	
-	public void setBirth(Date birth) throws Exception {
+	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
 
