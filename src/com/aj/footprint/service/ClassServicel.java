@@ -79,11 +79,4 @@ public interface ClassServicel {
 	 * @return
 	 */
 	public Long checkHaveBaby(String id);
-	
-	/**
-	 * 根据条件查询班级信息
-	 * @param params
-	 * @return
-	 */
-	public List<Map<String, Object>> queryClasses(Map<String,Object> params);
 }

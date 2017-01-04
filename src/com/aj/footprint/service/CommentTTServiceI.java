@@ -25,21 +25,8 @@ public interface CommentTTServiceI {
 	 * @param teacherName
 	 * @return
 	 */
-	int insertCommentTT(Integer nurseryId,Integer teacherId,Integer classId,String className,String grade,String term,String createyear,String teacherName);
+	int insertCommentTT(Integer nurseryId,Integer teacherId,Integer classId,String grade,String term,String createyear,String teacherName);
 	
-	/**
-	 * 更新在园学期评价结果
-	 * @param id
-	 * @param sparkle
-	 * @param progress
-	 * @param guidance
-	 * @param factors
-	 * @param plan
-	 * @return
-	 */
+	
 	int updateCommentTT(String id,String sparkle,String progress,String guidance,String factors,String plan);
-	
-	List<Map<String ,Object>> getCreAndTerm(Integer nursery,String babyId);
-	
-	List<Map<String ,Object>> getCommentTTResult(Integer nursery,String babyId,String createyear,String term);
 }
