@@ -10,7 +10,7 @@ public interface ItemScoreServiceI {
 	 * @param stage
 	 * @return
 	 */
-	List<Map<String ,Object>> getItemScore(Integer nursery_id,Integer teacher_id,Integer class_id, String grade,String createyear,String term,String stage, String quota, String name, String isBaby ,String babyId);
+	List<Map<String ,Object>> getItemScore(Integer nursery_id,Integer teacher_id,Integer class_id,String grade,String term,String stage, String quota, String name, String isBaby ,String babyId);
 	
 	/**
 	 * 根据项目来为该班级下所有学生创建评测成绩
@@ -25,15 +25,8 @@ public interface ItemScoreServiceI {
 	 * @param teacherName
 	 * @return
 	 */
-	int insertItemScore(List<Map<String ,Object>> items ,Integer nurseryId,Integer teacherId,Integer classId,String className,String grade,String term,String stage,String createyear,String teacherName);
+	int insertItemScore(List<Map<String ,Object>> items ,Integer nurseryId,Integer teacherId,Integer classId,String grade,String term,String stage,String createyear,String teacherName);
 	
-	/**
-	 * 更新项目成绩
-	 * @param id
-	 * @param score
-	 * @return
-	 */
+	
 	int updateScore(String id,String score);
-	
-	List<Map<String ,Object>> getCreAndTerm(Integer nursery,String babyId);
 }

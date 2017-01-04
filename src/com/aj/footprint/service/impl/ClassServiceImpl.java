@@ -196,25 +196,4 @@ public class ClassServiceImpl implements ClassServicel{
 		BigInteger value = (BigInteger)classDao.getValueBySql(sql);
 		return value.longValue();
 	}
-	
-	public List<Map<String, Object>> queryClasses(Map<String, Object> params) {
-		String sql = "select * from f_class where status='Y' ";
-		if(org.springframework.util.StringUtils.hasText((String)params.get("nursery_id"))&&params.get("nursery_id")!=null){
-			sql += " and nursery_id='"+(String)params.get("nursery_id")+"'";
-		}
-		if(org.springframework.util.StringUtils.hasText((String)params.get("createyear"))&&params.get("createyear")!=null){
-			sql += " and createyear='"+(String)params.get("createyear")+"'";
-		}
-		if(org.springframework.util.StringUtils.hasText((String)params.get("term"))&&params.get("term")!=null){
-			sql += " and term='"+(String)params.get("term")+"'";
-		}
-		if(org.springframework.util.StringUtils.hasText((String)params.get("grade"))&&params.get("grade")!=null){
-			sql += " and grade='"+(String)params.get("grade")+"'";
-		}
-		if(org.springframework.util.StringUtils.hasText((String)params.get("cnum"))&&params.get("cnum")!=null){
-			sql += " and cnum='"+(String)params.get("cnum")+"'";
-		}
-		System.out.println(sql);
-		return classDao.query(sql);
-	}
 }

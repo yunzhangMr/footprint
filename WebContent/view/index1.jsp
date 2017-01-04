@@ -8,7 +8,7 @@
 <script type="text/javascript" src="resource/bootstrap-3.3.0-dist/dist/js/bootstrap.js" ></script>
 <link rel="stylesheet" href="resource/bootstrap-3.3.0-dist/dist/css/bootstrap.css" type="text/css"></link>
 
-<title>小脚印11111111111111111111111111111</title>
+<title>小脚印</title>
 
 <style>
 img {height:200px;width:100%;}

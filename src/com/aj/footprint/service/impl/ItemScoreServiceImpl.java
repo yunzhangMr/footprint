@@ -21,21 +21,9 @@ public class ItemScoreServiceImpl implements ItemScoreServiceI {
 	private BaseDaoI<TItemScore> itemScoreDao;
 
 	public List<Map<String, Object>> getItemScore(Integer nursery_id,
-			Integer teacher_id, Integer class_id, String grade, String createyear, String term,
+			Integer teacher_id, Integer class_id, String grade, String term,
 			String stage, String quota, String name, String isBaby,String babyId) {
-		String sql = "select * from f_item_score where nursery_id='"+nursery_id+"' and term='"+term+"'";
-		if(!StringUtils.isEmpty(grade)){
-			sql += " and grade='"+grade+"'";
-		}
-		if(!StringUtils.isEmpty(createyear)){
-			sql += " and createyear='"+createyear+"'";
-		}
-		if(teacher_id!=null&&teacher_id!=0){
-			sql += " and teacher_id='"+teacher_id+"'";
-		}
-		if(class_id!=null&&class_id!=0){
-			sql += " and class_id='"+class_id+"'";
-		}
+		String sql = "select * from f_item_score where nursery_id='"+nursery_id+"' and teacher_id='"+teacher_id+"' and class_id='"+class_id+"' and grade='"+grade+"' and term='"+term+"'";
 		if(!StringUtils.isEmpty(stage)){
 			sql += " and stage='"+stage+"'";
 		}
@@ -56,13 +44,13 @@ public class ItemScoreServiceImpl implements ItemScoreServiceI {
 	}
 
 	public int insertItemScore(List<Map<String, Object>> items,
-			Integer nurseryId, Integer teacherId, Integer classId,String className,
+			Integer nurseryId, Integer teacherId, Integer classId,
 			String grade, String term, String stage, String createyear,
 			String teacherName) {
 		int count = 0;
 		for(Map<String, Object> map : items){
 			long itemCode = Long.parseLong(map.get("code").toString());
-			String sql = "insert into f_item_score(stage,class_id,class_name,term,grade,createyear,item_code,baby_id,baby_name,baby_gender,nursery_id,teacher_id,teacher_name) (select '"+stage+"','"+classId+"','"+className+"','"+term+"','"+grade+"','"+createyear+"','"+itemCode+"',b.id,b.bname,b.gender,'"+nurseryId+"','"+teacherId+"','"+teacherName+"' from f_baby b left join f_baby_class bc on b.id=bc.baby_id where 1=1 and bc.class_id='"+classId+"' and bc.`status` = 'N')";
+			String sql = "insert into f_item_score(stage,class_id,term,grade,createyear,item_code,baby_id,baby_name,baby_gender,nursery_id,teacher_id,teacher_name) (select '"+stage+"','"+classId+"','"+term+"','"+grade+"','"+createyear+"','"+itemCode+"',b.id,b.bname,b.gender,'"+nurseryId+"','"+teacherId+"','"+teacherName+"' from f_baby b left join f_baby_class bc on b.id=bc.baby_id where 1=1 and bc.class_id='"+classId+"' and bc.`status` = 'N')";
 			count += itemScoreDao.excuteBySql(sql);
 		}
 		return count;
@@ -71,13 +59,6 @@ public class ItemScoreServiceImpl implements ItemScoreServiceI {
 	public int updateScore(String id, String score) {
 		String sql = "update f_item_score set score='"+score+"' where id = '"+id+"'";
 		return itemScoreDao.excuteBySql(sql);
-	}
-
-	public List<Map<String, Object>> getCreAndTerm(Integer nursery,
-			String babyId) {
-		String sql = "select createyear,term,class_name from f_item_score where nursery_id='"+nursery+"' and baby_id='"+babyId+"' group by createyear,term,class_name order by createyear desc";
-		/*System.out.println(sql);*/
-		return itemScoreDao.query(sql);
 	}
 
 	

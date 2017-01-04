@@ -67,8 +67,7 @@ public class CommentTTController extends BaseController{
 		Integer teacherId = sessionInfo.getSid();
 		Integer classId = Integer.parseInt(sessionInfo.getClassid());
 		String grade = sessionInfo.getGrade();
-		String className = sessionInfo.getCname();
-		int rows = commentTTService.insertCommentTT(nurseryId, teacherId, classId, className, grade, term, createyear, teacherName);
+		int rows = commentTTService.insertCommentTT(nurseryId, teacherId, classId, grade, term, createyear, teacherName);
 		j.setObj(rows);
 		j.setMsg("创建成功！");
 		j.setSuccess(true);
@@ -86,23 +85,5 @@ public class CommentTTController extends BaseController{
 		j.setMsg("保存成功！");
 		j.setSuccess(true);
 		return j;
-	}
-	
-	//获取班级-学期-班级名称
-	@ResponseBody
-	@RequestMapping(value="/getItemCTC")
-	public List<Map<String,Object>> getCTC(){
-		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
-		SessionInfo sessionInfo = (SessionInfo)request.getSession().getAttribute("sessionInfo");
-		return commentTTService.getCreAndTerm(sessionInfo.getNurseryid(), sessionInfo.getBabyid());
-	}
-	
-	//获取在园学期评价(根据学年，学期)
-	@ResponseBody
-	@RequestMapping(value="/getCommentTTResult")
-	public List<Map<String,Object>> getCommentTTResult(String createyear,String term){
-		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
-		SessionInfo sessionInfo = (SessionInfo)request.getSession().getAttribute("sessionInfo");
-		return commentTTService.getCommentTTResult(sessionInfo.getNurseryid(), sessionInfo.getBabyid(), createyear, term);
 	}
 }
