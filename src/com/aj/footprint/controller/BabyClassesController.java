@@ -1,5 +1,7 @@
 package com.aj.footprint.controller;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.aj.footprint.model.po.TClass;
+import com.aj.footprint.model.po.TBabyClasses;
+import com.aj.footprint.model.po.TMoveLog;
+import com.aj.footprint.model.vo.Json;
 import com.aj.footprint.model.vo.Pagination;
 import com.aj.footprint.model.vo.SessionInfo;
 import com.aj.footprint.service.BabyClassServiceI;
-import com.aj.general.util.DecodeUtil;
+import com.aj.footprint.service.ClassServicel;
+import com.aj.footprint.service.MoveLogServiceI;
 
 @Controller
 @RequestMapping("/babyClassesController")
@@ -26,16 +33,22 @@ public class BabyClassesController extends BaseController{
 	
 	@Autowired
 	private BabyClassServiceI babyClassesService;
+	@Autowired
+	private MoveLogServiceI moveLogService;
+	@Autowired
+	private ClassServicel classService;
 	
 	//获取班级下的宝宝（分页的）
 	@ResponseBody
 	@RequestMapping(value="/babyClassesManage")
-	public Map<String,Object>  teacherManage(int limit,int offset,String class_id,String status,String name,String birth){
+	public Map<String,Object>  teacherManage(int limit,int offset,String class_id,String status,String name,String birth,String grade,String cnum){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("classId", class_id);
 		params.put("status", status);
 		params.put("name", name);
 		params.put("birth", birth);
+		params.put("grade", grade);
+		params.put("cnum", cnum);
 		Pagination page = babyClassesService.queryPage(limit, offset, params);
 		List list = page.getResultList();
 		Integer total = page.getTotalRows();
@@ -50,6 +63,7 @@ public class BabyClassesController extends BaseController{
 		System.out.println(name);
 		System.out.println(birth);
 		System.out.println(list);
+		System.out.println(cnum);
 		return map;
 
 	}
@@ -107,4 +121,41 @@ public class BabyClassesController extends BaseController{
 		return map;
 
 	}*/
+	
+	//离园
+	@ResponseBody
+	@RequestMapping(value="/changeBase")
+	public Json changeBase(TBabyClasses p){
+		Json j = new Json();
+		babyClassesService.update(p);
+		j.setMsg("操作成功！");
+		return j;
+	}
+	
+	//调班
+	@ResponseBody
+	@RequestMapping(value="/changeClass")
+	public Json changeClass(TBabyClasses p,String gradeNew,String cnumNew){
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
+		SessionInfo sessionInfo = (SessionInfo)request.getSession().getAttribute("sessionInfo");
+		Json j = new Json();
+		babyClassesService.update(p);
+		babyClassesService.updateClass(sessionInfo.getNurseryid().toString(), sessionInfo.getCreateyear(), sessionInfo.getTerm(), gradeNew, cnumNew, p.getBaby_id().toString());
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("nursery_id", sessionInfo.getNurseryid().toString());
+		params.put("createyear", sessionInfo.getCreateyear());
+		params.put("term", sessionInfo.getTerm());
+		params.put("grade", gradeNew);
+		params.put("cnum", cnumNew);
+		List<Map<String, Object>> classList = classService.queryClasses(params);
+		Number num = (Number) classList.get(0).get("id");  
+		TMoveLog moveLog = new TMoveLog();
+		moveLog.setPrevious(p.getClass_id());
+		moveLog.setAfter(num.intValue());
+		moveLog.setMovetime(new Timestamp(new Date().getTime()));
+		moveLog.setActor(sessionInfo.getUserName());
+		moveLogService.save(moveLog);
+		j.setMsg("操作成功！");
+		return j;
+	}
 }

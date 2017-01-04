@@ -28,7 +28,7 @@ public class BabyClassServiceImpl implements BabyClassServiceI {
 
 	public Pagination queryPage(Integer limit, Integer offset,
 			Map<String, Object> params) {
-		String sql = "select b.*,bc.class_id from f_baby b left join f_baby_class bc on b.id=bc.baby_id where 1=1 ";
+		String sql = "select b.*,bc.id b_c_id,c.id class_id,c.cname class_name,c.grade,c.cnum from f_baby b left join f_baby_class bc on b.id=bc.baby_id left join f_class c on bc.class_id=c.id where 1=1 ";
 		if(!StringUtils.isEmpty((String)params.get("classId"))){
 			sql += " and bc.class_id='"+(String)params.get("classId")+"'";
 		}
@@ -40,6 +40,12 @@ public class BabyClassServiceImpl implements BabyClassServiceI {
 		}
 		if(!StringUtils.isEmpty((String)params.get("birth"))){
 			sql += " and b.birth = '"+(String)params.get("name")+"'";
+		}
+		if(!StringUtils.isEmpty((String)params.get("grade"))){
+			sql += " and c.grade = '"+(String)params.get("grade")+"'";
+		}
+		if(!StringUtils.isEmpty((String)params.get("cnum"))){
+			sql += " and c.cnum = '"+(String)params.get("cnum")+"'";
 		}
 		System.out.println(sql);
 		return babyClassesDao.queryPage(sql,limit,offset);
@@ -61,6 +67,17 @@ public class BabyClassServiceImpl implements BabyClassServiceI {
 		}
 		System.out.println(sql);
 		return babyClassesDao.query(sql);
+	}
+
+	public void update(TBabyClasses p) {
+		babyClassesDao.update(p);
+	}
+
+	public void updateClass(String nursery_id, String createyear, String term,
+			String grade, String cnum, String baby_id) {
+		String sql = "insert into f_baby_class(class_id,baby_id,status) (select id,'"+baby_id+"','N' from f_class where nursery_id='"+nursery_id+"' and createyear='"+createyear+"' and term='"+term+"' and grade='"+grade+"' and cnum='"+cnum+"')";
+		System.out.println(sql);
+		babyClassesDao.excuteBySql(sql);
 	}
 
 }

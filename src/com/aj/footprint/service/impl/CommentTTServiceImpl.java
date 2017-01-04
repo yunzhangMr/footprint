@@ -31,9 +31,9 @@ public class CommentTTServiceImpl implements CommentTTServiceI {
 	}
 
 	public int insertCommentTT(Integer nurseryId, Integer teacherId,
-			Integer classId, String grade, String term, String createyear,
+			Integer classId,String className, String grade, String term, String createyear,
 			String teacherName) {
-		String sql = "insert into f_comment_t_t(class_id,term,grade,createyear,baby_id,baby_name,baby_gender,nursery_id,teacher_id,teacher_name) (select '"+classId+"','"+term+"','"+grade+"','"+createyear+"',b.id,b.bname,b.gender,'"+nurseryId+"','"+teacherId+"','"+teacherName+"' from f_baby b left join f_baby_class bc on b.id=bc.baby_id where 1=1 and bc.class_id='"+classId+"' and bc.`status` = 'N')";
+		String sql = "insert into f_comment_t_t(class_id,class_name,term,grade,createyear,baby_id,baby_name,baby_gender,nursery_id,teacher_id,teacher_name) (select '"+classId+"','"+ className+"','"+term+"','"+grade+"','"+createyear+"',b.id,b.bname,b.gender,'"+nurseryId+"','"+teacherId+"','"+teacherName+"' from f_baby b left join f_baby_class bc on b.id=bc.baby_id where 1=1 and bc.class_id='"+classId+"' and bc.`status` = 'N')";
 		return commentTTDao.excuteBySql(sql);
 	}
 
@@ -43,6 +43,19 @@ public class CommentTTServiceImpl implements CommentTTServiceI {
 		return commentTTDao.excuteBySql(sql);
 	}
 
+	public List<Map<String, Object>> getCreAndTerm(Integer nursery,
+			String babyId) {
+		String sql = "select createyear,term,class_name from f_comment_t_t where nursery_id='"+nursery+"' and baby_id='"+babyId+"' group by createyear,term,class_name order by createyear desc";
+		/*System.out.println(sql);*/
+		return commentTTDao.query(sql);
+	}
 
+	public List<Map<String, Object>> getCommentTTResult(Integer nursery,
+			String babyId, String createyear, String term) {
+		String sql = "select * from f_comment_t_t where nursery_id='"+nursery+"' and baby_id='"+babyId+"' and createyear='"+createyear+"' and term='"+term+"'";
+		return commentTTDao.query(sql);
+	}
+	
+	
 
 }
