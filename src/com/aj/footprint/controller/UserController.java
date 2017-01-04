@@ -77,7 +77,7 @@ public class UserController extends BaseController {
 		if (u != null) {
 			System.out.println(u.getRoleids());
 			/*switch(u.getRoleids())*/
-			if(!"1".equals(u.getRoleids())){
+			if("2".equals(u.getRoleids())||"3".equals(u.getRoleids())){
 				others = userService.queryOthers(u.getSid(), u.getRoleids());
 			}
 			System.out.println(others);
@@ -97,9 +97,11 @@ public class UserController extends BaseController {
 					if(map.get("cname")!=null){sessionInfo.setCname(map.get("cname").toString());}
 					if(map.get("cnum")!=null){sessionInfo.setCnum(map.get("cnum").toString());}
 					if(map.get("class_id")!=null){sessionInfo.setClassid(map.get("class_id").toString());}
+					if(map.get("cname")!=null){sessionInfo.setCname(map.get("cname").toString());}
 		        }
 			}
 			if("3".equals(u.getRoleids())){
+				/*System.out.println(others);*/
 				for (Map<String, Object> map : others) {
 					if(map.get("baby_id")!=null){sessionInfo.setBabyid(map.get("baby_id").toString());}
 					if(map.get("baby_name")!=null){sessionInfo.setBabyname(map.get("baby_name").toString());}
@@ -107,6 +109,7 @@ public class UserController extends BaseController {
 					if(map.get("cname")!=null){sessionInfo.setCname(map.get("cname").toString());}
 					if(map.get("cnum")!=null){sessionInfo.setCnum(map.get("cnum").toString());}
 					if(map.get("class_id")!=null){sessionInfo.setClassid(map.get("class_id").toString());}
+					if(map.get("cname")!=null){sessionInfo.setCname(map.get("cname").toString());}
 		        }
 			}
 			request.getSession().setAttribute("sessionInfo", sessionInfo);

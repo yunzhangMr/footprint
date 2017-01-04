@@ -199,12 +199,13 @@ public class UserServiceImpl implements UserServiceI {
 
 	public List<Map<String, Object>> queryOthers(Integer sid, String roleids) {
 		String sql = "";
-		if("2".equals(roleids)||"4".equals(roleids)){
+		if("2".equals(roleids)){
 			sql = "select c.grade,c.cname,c.cnum,c.id class_id from f_user t left join f_class c on t.class_id = c.id where t.sid = '"+sid+"'";
 		}
 		if("3".equals(roleids)){
-			sql = "select b.id baby_id,b.bname baby_name,c.grade,c.cname,c.cnum,bc.class_id from f_baby b left join f_user t on t.sid = b.parent_id left join f_baby_class bc on b.id = bc.baby_id left join f_class c on bc.class_id = c.id where bc.`status`='N' and t.sid='"+sid+"' ";
+			sql = "select b.id baby_id,b.bname baby_name,c.grade,c.cname,c.cnum,bc.class_id from f_baby b left join f_user t on t.id = b.parent_id left join f_baby_class bc on b.id = bc.baby_id left join f_class c on bc.class_id = c.id where bc.`status`='N' and t.sid='"+sid+"' ";
 		}
+		/*System.out.println(sql);*/
 		return userDao.query(sql);
 	}
 

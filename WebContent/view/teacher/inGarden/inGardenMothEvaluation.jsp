@@ -183,6 +183,12 @@ String cname = teacherInGardenMonthEvaluateService.getCname(sessionInfo.getLogin
 		                valign: 'middle'
 		            }, 
 		            {
+		                title: '班级名称',
+		                field: 'classname',
+		                align: 'center',
+		                valign: 'middle'
+		            }, 
+		            {
 		                title: '年级',
 		                field: 'grade',
 		                align: 'center',
@@ -232,6 +238,7 @@ String cname = teacherInGardenMonthEvaluateService.getCname(sessionInfo.getLogin
 		        //隐藏id列
 		    	 $('#tb_departments').bootstrapTable('hideColumn', 'mid');
 		         $('#tb_departments').bootstrapTable('hideColumn', 'classid');
+		         //$('#tb_departments').bootstrapTable('hideColumn', 'classname');
 		         $('#tb_departments').bootstrapTable('hideColumn', 'grade');
 		         $('#tb_departments').bootstrapTable('hideColumn', 'term');
 		         $('#tb_departments').bootstrapTable('hideColumn', 'createyear');
@@ -248,12 +255,13 @@ String cname = teacherInGardenMonthEvaluateService.getCname(sessionInfo.getLogin
             var suggestion = $('#suggestion'+index).val();
             var behavior = $('#behavior'+index).val();
 	
+            /* alert('${sessionScope.sessionInfo.cname }'); */
 			$.ajax({ 
    	         type : 'POST',
    	         datatype : 'JSON',
    	         url :  '${pageContext.request.contextPath}/teacherInGardenMonthEvaluateController/dosave',
    	         data : {"id":row.id,"bname":row.bname,"createyear":row.createyear,"term":row.term,"mid":row.mid,"grade":row.grade,
-   	        	    "classid":row.classid,"behavior":behavior,"suggestion":suggestion,"createmonth":createmonth},
+   	        	    "classid":row.classid,"classname":'${sessionScope.sessionInfo.cname }',"behavior":behavior,"suggestion":suggestion,"createmonth":createmonth},
    			 success : function(data) {
    				$('#tb_departments').bootstrapTable('refresh');
    			 },

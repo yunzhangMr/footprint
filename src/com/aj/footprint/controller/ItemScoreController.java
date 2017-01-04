@@ -65,6 +65,7 @@ public class ItemScoreController extends BaseController{
 		Integer teacher_id = 0;
 		Integer class_id = 0;
 		String grade = sessionInfo.getGrade();
+		String createyear = null;
 		if("3".equals(sessionInfo.getRoleIds())){
 			nursery_id = 0;
 			teacher_id = 112;
@@ -75,7 +76,7 @@ public class ItemScoreController extends BaseController{
 			class_id = Integer.parseInt(sessionInfo.getClassid());
 		}
 		Map<String,Object> map= new HashMap<String, Object>();
-		map.put("rows", itemScoreService.getItemScore(nursery_id, teacher_id, class_id, grade, term, stage ,quota,name,isBaby,babyId));
+		map.put("rows", itemScoreService.getItemScore(nursery_id, teacher_id, class_id, grade,createyear, term, stage ,quota,name,isBaby,babyId));
 		return map;
 	}
 	
@@ -95,11 +96,12 @@ public class ItemScoreController extends BaseController{
 		String teacherName = sessionInfo.getUserName();
 		Integer teacherId = sessionInfo.getSid();
 		Integer classId = Integer.parseInt(sessionInfo.getClassid());
+		String className = sessionInfo.getCname();
 		String grade = sessionInfo.getGrade();
 		List<Map<String, Object>> items = itemService.getItems(grade, term);
 		
 		//2、遍历，将每一项加全班学生的信息录入到评测成绩表中
-		int rows = itemScoreService.insertItemScore(items, nurseryId, teacherId, classId, grade, term, stage, createyear, teacherName);
+		int rows = itemScoreService.insertItemScore(items, nurseryId, teacherId, classId , className, grade, term, stage, createyear, teacherName);
 		
 		j.setObj(rows);
 		j.setMsg("创建成功！");
@@ -122,5 +124,29 @@ public class ItemScoreController extends BaseController{
 		j.setMsg("保存成功！");
 		j.setSuccess(true);
 		return j;
+	}
+	
+	//获取评测成绩家长
+	@ResponseBody
+	@RequestMapping(value="/getItemScoreParent")
+	public Map<String,Object> getItemScore(String stage,String quota,String name,String isBaby,String babyId,String grade,String createyear,String term){
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
+		SessionInfo sessionInfo = (SessionInfo)request.getSession().getAttribute("sessionInfo");
+		Integer nursery_id = sessionInfo.getNurseryid();
+		babyId = sessionInfo.getBabyid();
+		Integer teacher_id = null;
+		Integer class_id = null;
+		Map<String,Object> map= new HashMap<String, Object>();
+		map.put("rows", itemScoreService.getItemScore(nursery_id, teacher_id, class_id, grade, createyear, term, stage ,quota,name,isBaby,babyId));
+		return map;
+	}
+	
+	//获取班级-学期-班级名称
+	@ResponseBody
+	@RequestMapping(value="/getItemCTC")
+	public List<Map<String,Object>> getCTC(){
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
+		SessionInfo sessionInfo = (SessionInfo)request.getSession().getAttribute("sessionInfo");
+		return itemScoreService.getCreAndTerm(sessionInfo.getNurseryid(), sessionInfo.getBabyid());
 	}
 }
